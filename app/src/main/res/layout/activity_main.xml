@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<com.jun.znews.widget.MainDragLayout
+    android:id="@+id/drag_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    android:background="@drawable/ic_main_left_bg"
+    tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!--1.底部功能(左侧侧滑功能布局)-->
+    <include
+        android:fitsSystemWindows="true"
+        android:id="@+id/vg_left"
+        layout="@layout/left_view_layout"/>
+    <!--2.上层主界面View  main view布局-->
+    <com.jun.znews.widget.CustomRelativeLayout
+        android:fitsSystemWindows="true"
+        android:id="@+id/vg_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        >
+        <!--顶部导航栏布局-->
+        <include layout="@layout/top_bar_common_layout"/>
+        <!--中间内容后面放入Fragment-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/iv_noimg"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中间内容容器..."
+                />
+        </FrameLayout>
+    </com.jun.znews.widget.CustomRelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+</com.jun.znews.widget.MainDragLayout>
