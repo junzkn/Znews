@@ -43,9 +43,10 @@ public class MainDragLayout extends FrameLayout {
     //左侧布局
     private RelativeLayout vg_left;
     //右侧(主界面布局)
-    private CustomRelativeLayout vg_main;
+    private CustomLinearLayout vg_main;
     //页面状态 默认为关闭
     private Status status = Status.Close;
+    private Boolean isDrag = true ;
 
     //三个构造方法
     public MainDragLayout(Context context) {
@@ -61,12 +62,23 @@ public class MainDragLayout extends FrameLayout {
         dragHelper = ViewDragHelper.create(this, dragHelperCallback);
     }
 
+    public Boolean getDrag() {
+        return isDrag;
+    }
+
+    public void setDrag(Boolean drag) {
+        isDrag = drag;
+        if(isDrag){
+            dragHelper.abort();
+        }
+    }
+
     //手势识别监听器
     class YScrollListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float dx, float dy) {
             //识别左右滑动
-            return Math.abs(dy) <= Math.abs(dx);
+            return Math.abs(dy) <= Math.abs(dx) && isDrag!=false;
         }
     }
 
@@ -225,11 +237,6 @@ public class MainDragLayout extends FrameLayout {
 
     /**
      * 调用进行left和main 视图进行位置布局
-     * @param changed
-     * @param left
-     * @param top
-     * @param right
-     * @param bottom
      */
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {

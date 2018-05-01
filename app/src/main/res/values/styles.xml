@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@android:color/white</item>
-        <item name="colorPrimaryDark">@android:color/white</item>
-        <item name="colorAccent">@android:color/white</item>
+        <item name="colorPrimary">@color/themeColor</item>
+        <item name="colorPrimaryDark">@color/themeColor</item>
+        <item name="colorAccent">@color/themeColor</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
@@ -13,9 +13,9 @@
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--item name="android:windowBackground">@drawable/launcher_bg</item-->
         <item name="android:windowFullscreen">true</item>
-        <item name="colorPrimary">@android:color/white</item>
-        <item name="colorPrimaryDark">@android:color/white</item>
-        <item name="colorAccent">@android:color/white</item>
+        <item name="colorPrimary">@color/themeColor</item>
+        <item name="colorPrimaryDark">@color/themeColor</item>
+        <item name="colorAccent">@color/themeColor</item>
     </style>
 
 </resources>

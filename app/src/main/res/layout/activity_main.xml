@@ -15,29 +15,31 @@
         android:id="@+id/vg_left"
         layout="@layout/left_view_layout"/>
     <!--2.上层主界面View  main view布局-->
-    <com.jun.znews.widget.CustomRelativeLayout
+    <com.jun.znews.widget.CustomLinearLayout
+        android:orientation="vertical"
         android:fitsSystemWindows="true"
         android:id="@+id/vg_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:background="@color/themeColor"
         >
         <!--顶部导航栏布局-->
-        <include layout="@layout/top_bar_common_layout"/>
+        <include
+            android:background="@color/themeColor"
+            layout="@layout/top_bar_common_layout"/>
         <!--中间内容后面放入Fragment-->
         <FrameLayout
+            android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-            <TextView
-                android:id="@+id/iv_noimg"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="中间内容容器..."
-                />
+            <fragment
+                class="com.jun.znews.fragment.MainInfoFragment"
+                android:id="@+id/main_info_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </FrameLayout>
-    </com.jun.znews.widget.CustomRelativeLayout>
+    </com.jun.znews.widget.CustomLinearLayout>
 
 
 </com.jun.znews.widget.MainDragLayout>

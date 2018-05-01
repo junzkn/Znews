@@ -2,8 +2,6 @@ package com.jun.znews.ui;
 
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.BadParcelableException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,23 +10,27 @@ import com.jun.znews.R;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.widget.CustomVideoView;
 
-public class SplashActivity extends BaseActivity {
+public class WelcomeActivity extends BaseActivity {
 
     private Button btn_splash;
     private CustomVideoView vv_splash;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        vv_splash = findViewById(R.id.vv_splash);
-        btn_splash = findViewById(R.id.btn_splash);
-        vv_splash.setVideoURI(Uri.parse("android.resource://"+this.getPackageName()+"/"+R.raw.kr36));
-        vv_splash.start();
+        setContentView(R.layout.activity_welcome);
+        initView();
+        initData() ;
+        setListener() ;
+    }
+
+    private void setListener() {
         vv_splash.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                vv_splash.start();
+                openActivity(MainActivity.class);
+                WelcomeActivity.this.finish();
             }
         });
         btn_splash.setOnClickListener(new View.OnClickListener() {
@@ -39,9 +41,24 @@ public class SplashActivity extends BaseActivity {
                     vv_splash = null ;
                 }
                 openActivity(MainActivity.class);
-                SplashActivity.this.finish();
+                WelcomeActivity.this.finish();
             }
         });
+    }
 
+    private void initData() {
+        vv_splash.setVideoURI(Uri.parse("android.resource://"+this.getPackageName()+"/"+R.raw.kr36));
+    }
+
+    private void initView() {
+        vv_splash = findViewById(R.id.vv_welcome);
+        btn_splash = findViewById(R.id.btn_welcome);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        vv_splash.start();
     }
 }

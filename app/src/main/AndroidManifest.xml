@@ -3,6 +3,7 @@
     package="com.jun.znews">
 
     <application
+        android:name=".ThisApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +13,7 @@
         <activity android:name=".ui.MainActivity">
 
         </activity>
-        <activity android:name=".ui.SplashActivity"
+        <activity android:name=".ui.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
