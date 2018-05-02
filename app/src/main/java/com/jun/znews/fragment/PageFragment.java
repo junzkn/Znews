@@ -7,9 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jun.znews.R;
+import com.jun.znews.common.DefineView;
 import com.jun.znews.fragment.base.BaseFragment;
 
-public class PageFragment extends BaseFragment {
+public class PageFragment extends BaseFragment implements DefineView{
     private View mView;
     private static final String KEY = "EXTRA" ;
     private String message;
@@ -36,7 +37,31 @@ public class PageFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         if(mView==null){
             mView = inflater.inflate(R.layout.page_fragment_layout,container,false);
+            initView();
+            initValData();
+            initListener();
+            bindData();
         }
         return mView ;
+    }
+
+    @Override
+    public void initView() {
+        //TODO
+    }
+
+    @Override
+    public void initValData() {
+
+    }
+
+    @Override
+    public void initListener() {
+
+    }
+
+    @Override
+    public void bindData() {
+
     }
 }

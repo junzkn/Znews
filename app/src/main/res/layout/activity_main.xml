@@ -25,8 +25,8 @@
         >
         <!--顶部导航栏布局-->
         <include
-            android:background="@color/themeColor"
-            layout="@layout/top_bar_common_layout"/>
+            layout="@layout/top_bar_common_layout"
+            android:background="@color/themeColor" />
         <!--中间内容后面放入Fragment-->
         <FrameLayout
             android:background="@android:color/white"

@@ -1,23 +1,15 @@
 package com.jun.znews.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.jun.znews.R;
 import com.jun.znews.adapter.LeftItemAdapter;
-import com.jun.znews.service.NewsApiService;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.widget.MainDragLayout;
 import com.nineoldandroids.view.ViewHelper;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MainActivity extends BaseActivity {
 

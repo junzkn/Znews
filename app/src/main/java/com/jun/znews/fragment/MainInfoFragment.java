@@ -23,7 +23,7 @@ public class MainInfoFragment extends BaseFragment implements DefineView{
     private TabLayout tab_layout ;
     private ViewPager info_viewpager ;
     private FixedPagerAdapter fixedPagerAdapter;
-    private String[] titles = new String[] {"新鲜事","无聊图","妹子图","段子"};
+    private String[] titles = new String[] {"头条","社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
     private List<BaseFragment> fragmentList ;
 
 
@@ -45,7 +45,7 @@ public class MainInfoFragment extends BaseFragment implements DefineView{
     @Override
     public void initView() {
         tab_layout = mView.findViewById(R.id.tab_layout) ;
-        tab_layout.setTabMode(TabLayout.MODE_FIXED);
+        tab_layout.setTabMode(TabLayout.MODE_SCROLLABLE);
         info_viewpager = mView.findViewById(R.id.info_viewpager) ;
     }
 
