@@ -1,4 +1,4 @@
-package com.jun.znews.adapter;
+package com.jun.znews.ui.adapter;
 
 
 import android.support.v4.app.Fragment;
@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 
-import com.jun.znews.fragment.base.BaseFragment;
+import com.jun.znews.ui.base.BaseFragment;
 
 import java.util.List;
 

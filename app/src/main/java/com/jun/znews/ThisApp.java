@@ -1,8 +1,9 @@
 package com.jun.znews;
 
-import android.app.Application;
 
-public class ThisApp extends Application {
+import org.litepal.LitePalApplication;
+
+public class ThisApp extends LitePalApplication {
     private static ThisApp instance = null ;
 
     @Override

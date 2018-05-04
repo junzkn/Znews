@@ -1,24 +1,24 @@
-package com.jun.znews.fragment;
+package com.jun.znews.ui;
 
 
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jun.znews.R;
-import com.jun.znews.adapter.FixedPagerAdapter;
-import com.jun.znews.common.DefineView;
-import com.jun.znews.fragment.base.BaseFragment;
-import com.jun.znews.ui.MainActivity;
+import com.jun.znews.ui.adapter.FixedPagerAdapter;
+import com.jun.znews.ui.base.BaseFragment;
+import com.jun.znews.ui.news.PageFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainInfoFragment extends BaseFragment implements DefineView{
+public class MainInfoFragment extends Fragment {
     private View mView ;
     private TabLayout tab_layout ;
     private ViewPager info_viewpager ;
@@ -42,14 +42,12 @@ public class MainInfoFragment extends BaseFragment implements DefineView{
     }
 
 
-    @Override
     public void initView() {
         tab_layout = mView.findViewById(R.id.tab_layout) ;
         tab_layout.setTabMode(TabLayout.MODE_SCROLLABLE);
         info_viewpager = mView.findViewById(R.id.info_viewpager) ;
     }
 
-    @Override
     public void initValData() {
         fixedPagerAdapter = new FixedPagerAdapter(getChildFragmentManager());
         fixedPagerAdapter.setTitles(titles);
@@ -62,12 +60,10 @@ public class MainInfoFragment extends BaseFragment implements DefineView{
         tab_layout.setupWithViewPager(info_viewpager);
     }
 
-    @Override
     public void initListener() {
         info_viewpager.setOnPageChangeListener(new mPagerChangeListener());
     }
 
-    @Override
     public void bindData() {
 
     }

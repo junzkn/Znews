@@ -1,13 +1,14 @@
 package com.jun.znews.ui;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import com.jun.znews.R;
 import com.jun.znews.ui.base.BaseActivity;
+import com.jun.znews.ui.base.BasePresenter;
 import com.jun.znews.widget.CustomVideoView;
 
 public class WelcomeActivity extends BaseActivity {
@@ -17,42 +18,40 @@ public class WelcomeActivity extends BaseActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        initView();
-        initData() ;
-        setListener() ;
+    public BasePresenter initPresent() {
+        return null;
     }
 
-    private void setListener() {
+    @Override
+    public int getLayout() {
+        return R.layout.activity_welcome;
+    }
+
+    @Override
+    public void initView() {
+        vv_splash = findViewById(R.id.vv_welcome);
+        btn_splash = findViewById(R.id.btn_welcome);
+    }
+
+    @Override
+    public void onPrepare() {
+        vv_splash.setVideoURI(Uri.parse("android.resource://" + this.getPackageName() + "/" + R.raw.kr36));
         vv_splash.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                openActivity(MainActivity.class);
-                WelcomeActivity.this.finish();
+                openMainActivity();
             }
         });
         btn_splash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(vv_splash.isPlaying()) {
+                if (vv_splash.isPlaying()) {
                     vv_splash.stopPlayback();
-                    vv_splash = null ;
+                    vv_splash = null;
                 }
-                openActivity(MainActivity.class);
-                WelcomeActivity.this.finish();
+                openMainActivity();
             }
         });
-    }
-
-    private void initData() {
-        vv_splash.setVideoURI(Uri.parse("android.resource://"+this.getPackageName()+"/"+R.raw.kr36));
-    }
-
-    private void initView() {
-        vv_splash = findViewById(R.id.vv_welcome);
-        btn_splash = findViewById(R.id.btn_welcome);
     }
 
 
@@ -61,4 +60,13 @@ public class WelcomeActivity extends BaseActivity {
         super.onStart();
         vv_splash.start();
     }
+
+    private void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        WelcomeActivity.this.finish();
+
+    }
+
+
 }

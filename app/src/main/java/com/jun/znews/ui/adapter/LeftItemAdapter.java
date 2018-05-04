@@ -1,4 +1,4 @@
-package com.jun.znews.adapter;
+package com.jun.znews.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
