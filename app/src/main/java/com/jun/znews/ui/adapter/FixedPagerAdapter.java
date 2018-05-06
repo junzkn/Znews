@@ -1,6 +1,7 @@
 package com.jun.znews.ui.adapter;
 
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -50,4 +51,5 @@ public class FixedPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         return titles[position];
     }
+
 }

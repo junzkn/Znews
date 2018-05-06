@@ -1,7 +1,7 @@
 package com.jun.znews.ui.base;
 
-import com.jun.znews.ui.news.IModel;
-import com.jun.znews.ui.news.IView;
+import com.jun.znews.ui.news.INewsModel;
+import com.jun.znews.ui.news.INewsView;
 
 /**
  * desc:
@@ -10,6 +10,6 @@ import com.jun.znews.ui.news.IView;
  */
 
 public class BasePresenter<T extends BaseFragment>  {
-    public IView mView;
-    public IModel mModel ;
+    public INewsView mView;
+    public INewsModel mModel ;
 }

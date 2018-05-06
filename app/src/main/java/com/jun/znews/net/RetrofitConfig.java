@@ -19,11 +19,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
 
-/**
- * desc:
- * author: Will .
- * date: 2017/9/2 .
- */
+
 public class RetrofitConfig {
     private static final String TAG = "RetrofitConfig";
 
@@ -77,8 +73,8 @@ public class RetrofitConfig {
             Request originalRequest = chain.request();
             Request request;
             HttpUrl modifiedUrl = originalRequest.url().newBuilder()
-                    .addQueryParameter("uid", Constants.uid)
-                    .addQueryParameter("devid", Constants.uid)
+                    .addQueryParameter("uid", ApiConstants.uid)
+                    .addQueryParameter("devid", ApiConstants.uid)
                     .addQueryParameter("proid", "ifengnews")
                     .addQueryParameter("vt", "5")
                     .addQueryParameter("publishid", "6103")
@@ -102,10 +98,10 @@ public class RetrofitConfig {
             if (request.body() != null) {
                 request.body().writeTo(requestBuffer);
             } else {
-                Log.d("LogTAG", "request.body() == null");
+                Log.e("LogTAG", "request.body() == null");
             }
             //打印url信息
-            Log.w(TAG, "intercept: " + request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
+            Log.e(TAG, "intercept: " + request.url() + (request.body() != null ? "?" + _parseParams(request.body(), requestBuffer) : ""));
             final Response response = chain.proceed(request);
 
             return response;

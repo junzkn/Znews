@@ -16,11 +16,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * desc:
- * author: Will .
- * date: 2017/9/2 .
- */
 public class HttpModule {
 
     OkHttpClient.Builder provideOkHttpClient() {
@@ -32,24 +27,16 @@ public class HttpModule {
                 .addInterceptor(RetrofitConfig.sLoggingInterceptor)
                 .addInterceptor(RetrofitConfig.sRewriteCacheControlInterceptor)
                 .addNetworkInterceptor(RetrofitConfig.sRewriteCacheControlInterceptor)
+                .addInterceptor(RetrofitConfig.sQueryParameterInterceptor)
                 .connectTimeout(10, TimeUnit.SECONDS);
     }
 
-//    @Provides
-//    Retrofit.Builder provideBuilder(OkHttpClient okHttpClient) {
-//        return new Retrofit.Builder()
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//                .client(okHttpClient);
-//    }
 
-    NewsApi provideNetEaseApis(OkHttpClient.Builder builder) {
-        builder.addInterceptor(RetrofitConfig.sQueryParameterInterceptor);
-
+    NewsApi provideNewsApis() {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(builder.build());
+                .client(provideOkHttpClient().build());
 
         return NewsApi.getInstance(retrofitBuilder
                 .baseUrl(ApiConstants.sIFengApi)

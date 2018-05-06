@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import com.jun.znews.R;
 import com.jun.znews.ui.adapter.FixedPagerAdapter;
 import com.jun.znews.ui.base.BaseFragment;
-import com.jun.znews.ui.news.PageFragment;
+import com.jun.znews.ui.news.NewsFragment;
+import com.jun.znews.utils.ChannelUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +24,8 @@ public class MainInfoFragment extends Fragment {
     private TabLayout tab_layout ;
     private ViewPager info_viewpager ;
     private FixedPagerAdapter fixedPagerAdapter;
-    private String[] titles = new String[] {"头条","社会","国内","国际","娱乐","体育","军事","科技","财经","时尚"};
+    private String[] titles ;
     private List<BaseFragment> fragmentList ;
-
-
 
 
     @Override
@@ -36,13 +35,13 @@ public class MainInfoFragment extends Fragment {
             initView() ;
             initValData() ;
             initListener() ;
-            bindData() ;
         }
         return mView ;
     }
 
 
     public void initView() {
+        titles = ChannelUtils.getALLChannelName(getContext());
         tab_layout = mView.findViewById(R.id.tab_layout) ;
         tab_layout.setTabMode(TabLayout.MODE_SCROLLABLE);
         info_viewpager = mView.findViewById(R.id.info_viewpager) ;
@@ -53,7 +52,7 @@ public class MainInfoFragment extends Fragment {
         fixedPagerAdapter.setTitles(titles);
         fragmentList = new ArrayList<>();
         for(int i=0 ; i<titles.length ; i++){
-            fragmentList.add(PageFragment.newInstance(titles[i]));
+            fragmentList.add(NewsFragment.newInstance(i));
         }
         fixedPagerAdapter.setFragments(fragmentList);
         info_viewpager.setAdapter(fixedPagerAdapter);
@@ -64,9 +63,6 @@ public class MainInfoFragment extends Fragment {
         info_viewpager.setOnPageChangeListener(new mPagerChangeListener());
     }
 
-    public void bindData() {
-
-    }
 
     private class mPagerChangeListener implements ViewPager.OnPageChangeListener {
         @Override
@@ -85,6 +81,11 @@ public class MainInfoFragment extends Fragment {
 
         }
     }
+
+
+
+
+
 }
 
 

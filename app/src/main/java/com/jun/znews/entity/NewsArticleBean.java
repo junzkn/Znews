@@ -5,11 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * desc: .
- * author: Will .
- * date: 2017/9/7 .
- */
 public class NewsArticleBean implements Serializable {
     @Override
     public String toString() {

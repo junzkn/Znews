@@ -1,29 +1,17 @@
 package com.jun.znews.net;
 
-
-
-
-
 import com.jun.znews.entity.NewsArticleBean;
 import com.jun.znews.entity.NewsDetail;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 
-/**
- * desc:
- * author: Will .
- * date: 2017/9/2 .
- */
 public interface NewsApiService {
-
-
 //    @GET("ClientNews")
 //    Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
 //                                               @Query("action") String action,
@@ -40,7 +28,7 @@ public interface NewsApiService {
 
     @GET("ClientNews")
     Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
-                                         @Query("page") int page
+                                               @Query("page") int page
     );
 
     @GET("ClientNews")
@@ -55,10 +43,6 @@ public interface NewsApiService {
     @GET
     Observable<NewsArticleBean> getNewsArticleWithCmpp(@Url String url,
                                                        @Query("aid") String aid);
-
-
-
-
 
 
 }

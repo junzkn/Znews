@@ -3,17 +3,24 @@ package com.jun.znews.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-import com.jun.znews.ui.news.IPresenter;
+import com.jun.znews.R;
+import com.jun.znews.ui.news.INewsPresenter;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 
-public abstract  class BaseFragment<T extends IPresenter>  extends Fragment {
+public abstract  class BaseFragment<T extends INewsPresenter>  extends RxFragment  {
+
+
     protected T basepresenter;
     protected View mView ;
+    protected Button loadFail ;
+    protected TextView  loadingData ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,18 +32,42 @@ public abstract  class BaseFragment<T extends IPresenter>  extends Fragment {
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         if(mView==null){
             mView = inflater.inflate(getLayout(),container,false) ;
+            loadingData = mView.findViewById(R.id.img_loadingData) ;
+            loadFail = mView.findViewById(R.id.img_loadFail) ;
         }
-        initView();
-        onPrepare();
+        loadingData.setVisibility(View.VISIBLE);
+        loadFail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadingData.setVisibility(View.VISIBLE);
+                loadFail.setVisibility(View.GONE);
+                reload();
+            }
+        });
+        init();
+        prepare();
         return mView ;
     }
 
+
+    protected void loadSucceed(){
+        loadingData.setVisibility(View.GONE);
+        loadFail.setVisibility(View.GONE);
+    }
+    protected void loadFail(){
+        loadFail.setVisibility(View.VISIBLE);
+        loadingData.setVisibility(View.GONE);
+    }
 
     public abstract T initPresent();
 
     public abstract int getLayout();
 
-    public abstract void initView();
+    public abstract void init();
 
-    public abstract void onPrepare();
+    public abstract void prepare();
+
+    public abstract void reload();
+
+
 }

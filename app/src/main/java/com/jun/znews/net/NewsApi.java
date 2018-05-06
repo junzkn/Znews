@@ -13,11 +13,6 @@ import java.util.List;
 import io.reactivex.Observable;
 
 
-/**
- * desc:
- * author: Will .
- * date: 2017/9/2 .
- */
 public class NewsApi {
 
     public static final String ACTION_DEFAULT = "default";
