@@ -12,10 +12,6 @@
     <string name="pull_to_refresh_tap_label" translatable="false">点击刷新</string>
 
 
-
-
-
-
     <!-- 新闻 -->
     <string name="news_commentsize">%1$s评论</string>
     <string name="detail_header_tv">下拉一下，看点儿不一样的</string>
@@ -25,7 +21,6 @@
     <string name="willUrl">http://will-ls.top/</string>
     <string name="githubUrl">https://github.com/Will-Ls</string>
     <string name="email">liwanglin_001@163.com</string>
-
 
 
     //新闻频道
@@ -39,7 +34,6 @@
         <item>历史</item>
         <item>台湾</item>
         <item>汽车</item>
-        <!--<item>社会</item>-->
         <item>时尚</item>
         <item>国学</item>
         <item>文化</item>
@@ -48,6 +42,13 @@
         <item>游戏</item>
         <item>电影</item>
         <item>国际</item>
+        <item>朋友圈热闻</item>
+        <item>美食</item>
+        <item>公益</item>
+        <item>讲堂</item>
+        <item>要闻</item>
+        <item>萌宠</item>
+        <item>旅游</item>
     </string-array>
 
     <string-array name="news_channel_id">
@@ -60,7 +61,6 @@
         <item>LS153,FOCUSLS153</item>
         <item>TW73</item>
         <item>QC45,FOCUSQC45</item>
-        <!--<item>SH133,FOCUSSH133</item>-->
         <item>SS78,FOCUSSS78</item>
         <item>GXPD,FOCUSGXPD</item>
         <item>WH25,FOCUSWH25</item>
@@ -69,10 +69,15 @@
         <item>YX11,FOCUSYX11</item>
         <item>DYPD</item>
         <item>GJPD</item>
+        <item>CIRCLEHOT</item>
+        <item>DELIC</item>
+        <item>GYPD,FOCUSGYPD</item>
+        <item>FORUM,FOCUSFORM</item>
+        <item>YAOWEN223</item>
+        <item>MENGCHONG,FOCUSMENGCHONG</item>
+        <item>LY67,FOCUSLY67,SECNAVLY67</item>
+
     </string-array>
-
-
-
 
 
 </resources>

@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.jun.znews.R;
 import com.jun.znews.ui.adapter.FixedPagerAdapter;
 import com.jun.znews.ui.base.BaseFragment;
-import com.jun.znews.ui.news.NewsFragment;
+import com.jun.znews.ui.news.news.NewsFragment;
 import com.jun.znews.utils.ChannelUtils;
 
 import java.util.ArrayList;

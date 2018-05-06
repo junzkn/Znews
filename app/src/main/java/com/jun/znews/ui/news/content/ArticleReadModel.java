@@ -1,13 +1,12 @@
-package com.jun.znews.ui.news;
+package com.jun.znews.ui.news.content;
 
 import com.jun.znews.ThisApp;
-import com.jun.znews.entity.NewsDetail;
+import com.jun.znews.entity.NewsArticleBean;
 import com.jun.znews.net.ApiConstants;
 import com.jun.znews.net.NewsApiService;
 import com.jun.znews.net.RetrofitConfig;
 
 import java.io.File;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -19,13 +18,12 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NewsModel implements INewsModel {
+public class ArticleReadModel implements IArticleReadModel {
+
 
     Retrofit retrofit;
-
     @Override
-    public Observable getData(String id,String action,int num) {
-
+    public Observable getData(String aid) {
         Cache cache = new Cache(new File(ThisApp.getContext().getCacheDir(), "HttpCache"),
                 1024 * 1024 * 100);
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder().cache(cache)
@@ -44,12 +42,10 @@ public class NewsModel implements INewsModel {
 
         NewsApiService newsApiService = retrofit.create(NewsApiService.class);
 
-        Observable<List<NewsDetail>> observable = newsApiService.getNewsDetail(id, action, num)
+        Observable<NewsArticleBean> observable = newsApiService.getNewsArticleWithCmpp(ApiConstants.sGetNewsArticleCmppApi + ApiConstants.sGetNewsArticleDocCmppApi,aid)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
         return observable ;
     }
-
-
 }

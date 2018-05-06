@@ -10,14 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.jun.znews.R;
-import com.jun.znews.ui.news.INewsPresenter;
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
 
-public abstract  class BaseFragment<T extends INewsPresenter>  extends RxFragment  {
+public abstract  class BaseFragment<T extends BasePresenter>  extends RxFragment  {
 
-
-    protected T basepresenter;
+    protected T basePresenter;
     protected View mView ;
     protected Button loadFail ;
     protected TextView  loadingData ;
@@ -25,7 +23,7 @@ public abstract  class BaseFragment<T extends INewsPresenter>  extends RxFragmen
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        basepresenter = initPresent();
+        basePresenter = initPresent();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.jun.znews.ui.news;
+package com.jun.znews.ui.news.news;
 
 import com.jun.znews.entity.NewsDetail;
 import com.jun.znews.net.BaseObserver;
@@ -12,8 +12,10 @@ import io.reactivex.Observable;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 
-public class NewsPresenter extends BasePresenter<NewsFragment> implements INewsPresenter {
+public class NewsPresenter extends BasePresenter implements INewsPresenter {
 
+    public INewsView mView;
+    public INewsModel mModel ;
 
 
     public NewsPresenter(INewsView newsView) {

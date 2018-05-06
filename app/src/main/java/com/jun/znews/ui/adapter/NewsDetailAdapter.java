@@ -2,7 +2,6 @@ package com.jun.znews.ui.adapter;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
@@ -35,15 +34,15 @@ public class NewsDetailAdapter extends BaseMultiItemQuickAdapter<NewsDetail.Item
     protected void convert(BaseViewHolder baseViewHolder, NewsDetail.ItemBean bean) {
         switch (baseViewHolder.getItemViewType()) {
             case NewsDetail.ItemBean.TYPE_DOC_TITLEIMG:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
                 baseViewHolder.setText(R.id.tv_source, bean.getSource());
                 baseViewHolder.setText(R.id.tv_commnetsize,
                         String.format(mContext.getResources().getString(R.string.news_commentsize), bean.getCommentsall()));
-                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.ar_logo));
                 baseViewHolder.addOnClickListener(R.id.iv_close);
                 break;
             case NewsDetail.ItemBean.TYPE_DOC_SLIDEIMG:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
                 baseViewHolder.setText(R.id.tv_source, bean.getSource());
                 baseViewHolder.setText(R.id.tv_commnetsize,
                         String.format(mContext.getResources().getString(R.string.news_commentsize), bean.getCommentsall()));
@@ -59,12 +58,12 @@ public class NewsDetailAdapter extends BaseMultiItemQuickAdapter<NewsDetail.Item
                 baseViewHolder.addOnClickListener(R.id.iv_close);
                 break;
             case NewsDetail.ItemBean.TYPE_ADVERT_TITLEIMG:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
-                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
+                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.ar_logo));
                 baseViewHolder.addOnClickListener(R.id.iv_close);
                 break;
             case NewsDetail.ItemBean.TYPE_ADVERT_SLIDEIMG:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
                 try {
                     ImageLoaderUtil.LoadImage(mContext, bean.getStyle().getImages().get(0), (ImageView) baseViewHolder.getView(R.id.iv_1));
                     ImageLoaderUtil.LoadImage(mContext, bean.getStyle().getImages().get(1), (ImageView) baseViewHolder.getView(R.id.iv_2));
@@ -75,25 +74,25 @@ public class NewsDetailAdapter extends BaseMultiItemQuickAdapter<NewsDetail.Item
                 baseViewHolder.addOnClickListener(R.id.iv_close);
                 break;
             case NewsDetail.ItemBean.TYPE_ADVERT_LONGIMG:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
-                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
+                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.ar_logo));
                 baseViewHolder.addOnClickListener(R.id.iv_close);
                 break;
             case NewsDetail.ItemBean.TYPE_SLIDE:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
                 baseViewHolder.setText(R.id.tv_source, bean.getSource());
                 baseViewHolder.setText(R.id.tv_commnetsize,
                         String.format(mContext.getResources().getString(R.string.news_commentsize), bean.getCommentsall()));
-                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.ar_logo));
                 baseViewHolder.addOnClickListener(R.id.iv_close);
                 break;
             case NewsDetail.ItemBean.TYPE_PHVIDEO:
-                baseViewHolder.setText(R.id.tv_title, bean.getTitle());
+                baseViewHolder.setText(R.id.ar_title, bean.getTitle());
                 baseViewHolder.setText(R.id.tv_source, bean.getSource());
                 baseViewHolder.setText(R.id.tv_commnetsize,
                         String.format(mContext.getResources().getString(R.string.news_commentsize), bean.getCommentsall()));
                 baseViewHolder.addOnClickListener(R.id.iv_close);
-                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.iv_logo));
+                ImageLoaderUtil.LoadImage(mContext, bean.getThumbnail(), (ImageView) baseViewHolder.getView(R.id.ar_logo));
                 break;
 
         }

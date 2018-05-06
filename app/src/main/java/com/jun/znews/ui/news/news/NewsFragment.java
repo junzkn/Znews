@@ -1,31 +1,34 @@
-package com.jun.znews.ui.news;
+package com.jun.znews.ui.news.news;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
 import com.jun.znews.R;
 import com.jun.znews.entity.NewsDetail;
 import com.jun.znews.ui.adapter.NewsDetailAdapter;
 import com.jun.znews.ui.base.BaseFragment;
+import com.jun.znews.ui.news.content.AdvertActivity;
+import com.jun.znews.ui.news.content.ArticleReadActivity;
 import com.jun.znews.utils.ChannelUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsFragment extends BaseFragment<INewsPresenter> implements INewsView {
+public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsView {
 
     private static final String KEY = "EXTRA";
     public static final String ACTION_DEFAULT = "default";
@@ -60,7 +63,6 @@ public class NewsFragment extends BaseFragment<INewsPresenter> implements INewsV
         if (bundle != null) {
             index = bundle.getInt(KEY);
         }
-
     }
 
     @Override
@@ -91,39 +93,53 @@ public class NewsFragment extends BaseFragment<INewsPresenter> implements INewsV
         detailAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-                basepresenter.loadUpData(channelID, ACTION_UP, upNum);
+                basePresenter.loadUpData(channelID, ACTION_UP, upNum);
             }
         }, page_listview);
 
         page_listview.setAdapter(detailAdapter);
         page_listview.setHasFixedSize(true);
         page_listview.setLayoutManager(linearLayoutManager);
-        page_listview.addOnItemTouchListener(new OnItemClickListener() {
+
+        detailAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
-            public void onSimpleItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                NewsDetail.ItemBean itemBean = (NewsDetail.ItemBean) baseQuickAdapter.getItem(i);
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                NewsDetail.ItemBean itemBean =  detailAdapter.getItem(position);
+                Log.e("newsBean:",itemBean.toString());
                 toRead(itemBean);
             }
         });
+        detailAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                NewsDetail.ItemBean itemBean =  detailAdapter.getItem(position);
+                switch (view.getId()) {
+                    case R.id.iv_close :
+                        if (itemBean.getStyle() == null) return;
+                        //TODO
+                        break ;
+                }
+            }
+        });
+
+
 
         srl.setProgressViewOffset(false, 0, 100);
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                basepresenter.loadData(channelID, ACTION_DOWN, downNum);
+                basePresenter.loadData(channelID, ACTION_DOWN, downNum);
             }
         });
 
 
-
-
-        basepresenter.loadData(channelID, ACTION_DEFAULT, defaultNum);
+        basePresenter.loadData(channelID, ACTION_DEFAULT, defaultNum);
     }
 
 
     @Override
     public void reload() {
-        basepresenter.loadData(channelID, ACTION_DEFAULT, defaultNum);
+        basePresenter.loadData(channelID, ACTION_DEFAULT, defaultNum);
     }
 
     @Override
@@ -190,25 +206,26 @@ public class NewsFragment extends BaseFragment<INewsPresenter> implements INewsV
         if (itemBean == null) {
             return;
         }
-//        switch (itemBean.getItemType()) {
-//            case NewsDetail.ItemBean.TYPE_DOC_TITLEIMG:
-//            case NewsDetail.ItemBean.TYPE_DOC_SLIDEIMG:
-//                Intent intent = new Intent(getActivity(), ArticleReadActivity.class);
-//                intent.putExtra("aid", itemBean.getDocumentId());
-//                startActivity(intent);
-//                break;
-//            case NewsDetail.ItemBean.TYPE_SLIDE:
-//                ImageBrowseActivity.launch(getActivity(), itemBean);
-//                break;
-//            case NewsDetail.ItemBean.TYPE_ADVERT_TITLEIMG:
-//            case NewsDetail.ItemBean.TYPE_ADVERT_SLIDEIMG:
-//            case NewsDetail.ItemBean.TYPE_ADVERT_LONGIMG:
-//                AdvertActivity.launch(getActivity(), itemBean.getLink().getWeburl());
-//                break;
-//            case NewsDetail.ItemBean.TYPE_PHVIDEO:
-//                Toast.makeText(getContext(),"TYPE_PHVIDEO",Toast.LENGTH_SHORT);
-//                break;
-//        }
+        switch (itemBean.getItemType()) {
+            case NewsDetail.ItemBean.TYPE_DOC_TITLEIMG:
+            case NewsDetail.ItemBean.TYPE_DOC_SLIDEIMG:
+                Intent intent = new Intent(getActivity(), ArticleReadActivity.class);
+                intent.putExtra("aid", itemBean.getDocumentId());
+                startActivity(intent);
+                break;
+            case NewsDetail.ItemBean.TYPE_SLIDE:
+                //TODO
+                //ImageBrowseActivity.launch(getActivity(), itemBean);
+                break;
+            case NewsDetail.ItemBean.TYPE_ADVERT_TITLEIMG:
+            case NewsDetail.ItemBean.TYPE_ADVERT_SLIDEIMG:
+            case NewsDetail.ItemBean.TYPE_ADVERT_LONGIMG:
+                AdvertActivity.launch(getActivity(), itemBean.getLink().getWeburl());
+                break;
+            case NewsDetail.ItemBean.TYPE_PHVIDEO:
+                Toast.makeText(getContext(),"TYPE_PHVIDEO",Toast.LENGTH_SHORT);
+                break;
+        }
     }
 
 

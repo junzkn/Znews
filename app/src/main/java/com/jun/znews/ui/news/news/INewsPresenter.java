@@ -1,4 +1,4 @@
-package com.jun.znews.ui.news;
+package com.jun.znews.ui.news.news;
 
 
 

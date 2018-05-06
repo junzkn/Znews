@@ -1,4 +1,4 @@
-package com.jun.znews.ui.news;
+package com.jun.znews.ui.news.news;
 
 import com.jun.znews.entity.NewsDetail;
 import com.trello.rxlifecycle2.LifecycleTransformer;

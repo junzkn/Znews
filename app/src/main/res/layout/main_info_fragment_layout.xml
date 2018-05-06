@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
+    <RelativeLayout
         android:background="@color/themeColor"
-        app:tabIndicatorHeight="5dp"
-        app:tabIndicatorColor="@android:color/white"
-        app:tabSelectedTextColor="@android:color/darker_gray"
-        app:tabTextColor="@android:color/white"
-        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </android.support.design.widget.TabLayout>
+        android:layout_height="35dp">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabIndicatorHeight="1dp"
+            app:tabSelectedTextColor="@android:color/darker_gray"
+            app:tabTextColor="@android:color/white"
+            android:layout_toLeftOf="@+id/add_more"
+            >
+        </android.support.design.widget.TabLayout>
+
+        <Button
+            android:id="@+id/add_more"
+            android:background="@drawable/ic_read_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+             />
+    </RelativeLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/info_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"></android.support.v4.view.ViewPager>
 
 </LinearLayout>
