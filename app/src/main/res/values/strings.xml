@@ -13,6 +13,7 @@
 
 
     <!-- 新闻 -->
+    <string name="news_toast_noData">没有更多数据了</string>
     <string name="news_commentsize">%1$s评论</string>
     <string name="detail_header_tv">下拉一下，看点儿不一样的</string>
     <string name="news_toast">已为您推荐了%1$s条新资讯</string>

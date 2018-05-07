@@ -57,6 +57,8 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
     implementation "com.github.florent37:viewanimator:1.0.5"
     implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'cn.bingoogolapple:bga-swipebacklayout:1.1.0'
+    implementation "com.github.chrisbanes:PhotoView:2.1.2"
 
     //database
     implementation 'org.litepal.android:core:1.5.1'

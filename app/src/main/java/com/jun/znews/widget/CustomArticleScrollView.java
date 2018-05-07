@@ -4,17 +4,17 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
-public class CustomScrollView extends ScrollView {
+public class CustomArticleScrollView extends ScrollView {
     private ScrollViewListener scrollViewListener = null;
-    public CustomScrollView(Context context) {
+    public CustomArticleScrollView(Context context) {
         super(context);
     }
 
-    public CustomScrollView(Context context, AttributeSet attrs) {
+    public CustomArticleScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CustomScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomArticleScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -23,7 +23,7 @@ public class CustomScrollView extends ScrollView {
 
 
     public interface ScrollViewListener {
-        void onScrollChanged(CustomScrollView scrollView, int x, int y, int oldx, int oldy);
+        void onScrollChanged(CustomArticleScrollView scrollView, int x, int y, int oldx, int oldy);
 
     }
     public void setScrollViewListener(ScrollViewListener scrollViewListener) {

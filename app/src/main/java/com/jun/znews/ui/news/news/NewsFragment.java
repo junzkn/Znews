@@ -9,6 +9,7 @@ import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +21,9 @@ import com.jun.znews.R;
 import com.jun.znews.entity.NewsDetail;
 import com.jun.znews.ui.adapter.NewsDetailAdapter;
 import com.jun.znews.ui.base.BaseFragment;
-import com.jun.znews.ui.news.content.AdvertActivity;
+import com.jun.znews.ui.news.content.AdvertReadActivity;
 import com.jun.znews.ui.news.content.ArticleReadActivity;
+import com.jun.znews.ui.news.content.ImageBrowseActivity;
 import com.jun.znews.utils.ChannelUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
@@ -44,6 +46,8 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
     private LinearLayoutManager linearLayoutManager;
     private RelativeLayout top_toast ;
     private TextView top_toast_text ;
+    protected Button loadFail ;
+    protected TextView  loadingData ;
     NewsDetailAdapter detailAdapter;
     List<NewsDetail.ItemBean> beanList;
 
@@ -79,6 +83,8 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
     public void init() {
         channelID = ChannelUtils.getALLChannelID(getContext())[index];
         beanList = new ArrayList<>();
+        loadingData = mView.findViewById(R.id.img_loadingData) ;
+        loadFail = mView.findViewById(R.id.img_loadFail) ;
         top_toast = mView.findViewById(R.id.top_toast);
         top_toast_text = mView.findViewById(R.id.top_toast_text);
         page_listview = mView.findViewById(R.id.page_listView);
@@ -89,6 +95,15 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
 
     @Override
     public void prepare() {
+        loading();
+        loadFail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loading();
+                basePresenter.loadData(channelID, ACTION_DEFAULT, defaultNum);
+            }
+        });
+
         detailAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
         detailAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
@@ -137,22 +152,33 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
     }
 
 
-    @Override
-    public void reload() {
-        basePresenter.loadData(channelID, ACTION_DEFAULT, defaultNum);
+    public void loading(){
+        loadingData.setVisibility(View.VISIBLE);
+        loadFail.setVisibility(View.GONE);
     }
+    public void loadSucceed(){
+        loadingData.setVisibility(View.GONE);
+        loadFail.setVisibility(View.GONE);
+    }
+    public void loadFail(){
+        loadFail.setVisibility(View.VISIBLE);
+        loadingData.setVisibility(View.GONE);
+    }
+
+
+
 
     @Override
     public void setAdapterData(List<NewsDetail.ItemBean> newsDetails) {
         if (newsDetails == null || newsDetails.size() == 0) {
             if (srl.isRefreshing()) {
-                Toast.makeText(getContext(),"sd",Toast.LENGTH_SHORT).show();
                 srl.setRefreshing(false);
+                showNumber(-1);
             }
             else {
                 loadFail();
             }
-        } else {
+        }else {
             if (srl.isRefreshing()) {
                 downNum++;
                 srl.setRefreshing(false);
@@ -160,7 +186,6 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
             loadSucceed();
             detailAdapter.setNewData(newsDetails);
         }
-
     }
 
     @Override
@@ -178,7 +203,11 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
 
     @Override
     public void showNumber(int number) {
-        top_toast_text.setText(String.format(getResources().getString(R.string.news_toast), number + ""));
+        if(number==-1){
+            top_toast_text.setText(R.string.news_toast_noData);
+        } else {
+            top_toast_text.setText(String.format(getResources().getString(R.string.news_toast), number + ""));
+        }
         top_toast.setVisibility(View.VISIBLE);
         ViewAnimator.animate(top_toast)
                 .newsPaper()
@@ -193,6 +222,7 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
                                 .start();
                     }
                 });
+
     }
 
     @Override
@@ -214,13 +244,12 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsVi
                 startActivity(intent);
                 break;
             case NewsDetail.ItemBean.TYPE_SLIDE:
-                //TODO
-                //ImageBrowseActivity.launch(getActivity(), itemBean);
+                ImageBrowseActivity.launch(getActivity(), itemBean);
                 break;
             case NewsDetail.ItemBean.TYPE_ADVERT_TITLEIMG:
             case NewsDetail.ItemBean.TYPE_ADVERT_SLIDEIMG:
             case NewsDetail.ItemBean.TYPE_ADVERT_LONGIMG:
-                AdvertActivity.launch(getActivity(), itemBean.getLink().getWeburl());
+                AdvertReadActivity.launch(getActivity(), itemBean.getLink().getWeburl());
                 break;
             case NewsDetail.ItemBean.TYPE_PHVIDEO:
                 Toast.makeText(getContext(),"TYPE_PHVIDEO",Toast.LENGTH_SHORT);

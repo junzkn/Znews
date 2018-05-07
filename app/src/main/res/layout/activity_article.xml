@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/ar_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/white">
@@ -74,7 +75,8 @@
 
     </RelativeLayout>
 
-    <com.jun.znews.widget.CustomScrollView
+    <com.jun.znews.widget.CustomArticleScrollView
+        android:layout_below="@+id/ar_top"
         android:id="@+id/ar_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,6 +92,7 @@
 
             <RelativeLayout
                 android:id="@+id/ar_bar"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -168,7 +171,23 @@
         </LinearLayout>
 
 
-    </com.jun.znews.widget.CustomScrollView>
+    </com.jun.znews.widget.CustomArticleScrollView>
+
+    <TextView
+        android:id="@+id/img_loadingData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="加载中" />
+
+    <Button
+        android:id="@+id/img_loadFail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="加载失败"
+        android:visibility="gone" />
 
 
-</LinearLayout>
+
+</RelativeLayout>

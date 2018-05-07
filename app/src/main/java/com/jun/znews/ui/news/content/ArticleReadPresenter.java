@@ -42,8 +42,7 @@ public class ArticleReadPresenter extends BasePresenter implements IArticleReadP
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        //TODO
-                        //mView.showFaild();
+                        mView.setData(null);
                     }
 
                     @Override

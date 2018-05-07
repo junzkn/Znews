@@ -22,11 +22,15 @@
         </activity>
         <activity
             android:name=".ui.WelcomeActivity"
-            android:theme="@style/WelcomeTheme">
-
-        </activity>
-        <activity android:name=".ui.news.content.ArticleReadActivity"></activity>
-        <activity android:name=".ui.news.content.AdvertActivity"></activity>
+            android:theme="@style/WelcomeTheme"></activity>
+        <activity
+            android:name=".ui.news.content.ArticleReadActivity"
+            android:theme="@style/BGA"></activity>
+        <activity
+            android:name=".ui.news.content.AdvertReadActivity"
+            android:theme="@style/BGA"></activity>
+        <activity android:name=".ui.news.content.ImageBrowseActivity"
+            android:theme="@style/BGA"></activity>
     </application>
 
 </manifest>

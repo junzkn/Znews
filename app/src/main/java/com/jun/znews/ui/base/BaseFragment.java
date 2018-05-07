@@ -17,8 +17,7 @@ public abstract  class BaseFragment<T extends BasePresenter>  extends RxFragment
 
     protected T basePresenter;
     protected View mView ;
-    protected Button loadFail ;
-    protected TextView  loadingData ;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,32 +29,12 @@ public abstract  class BaseFragment<T extends BasePresenter>  extends RxFragment
     public View onCreateView(LayoutInflater inflater,  ViewGroup container, Bundle savedInstanceState) {
         if(mView==null){
             mView = inflater.inflate(getLayout(),container,false) ;
-            loadingData = mView.findViewById(R.id.img_loadingData) ;
-            loadFail = mView.findViewById(R.id.img_loadFail) ;
         }
-        loadingData.setVisibility(View.VISIBLE);
-        loadFail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadingData.setVisibility(View.VISIBLE);
-                loadFail.setVisibility(View.GONE);
-                reload();
-            }
-        });
         init();
         prepare();
         return mView ;
     }
 
-
-    protected void loadSucceed(){
-        loadingData.setVisibility(View.GONE);
-        loadFail.setVisibility(View.GONE);
-    }
-    protected void loadFail(){
-        loadFail.setVisibility(View.VISIBLE);
-        loadingData.setVisibility(View.GONE);
-    }
 
     public abstract T initPresent();
 
@@ -65,7 +44,6 @@ public abstract  class BaseFragment<T extends BasePresenter>  extends RxFragment
 
     public abstract void prepare();
 
-    public abstract void reload();
 
 
 }

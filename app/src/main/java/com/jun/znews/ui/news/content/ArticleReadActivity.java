@@ -1,6 +1,8 @@
 package com.jun.znews.ui.news.content;
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +23,7 @@ import com.jun.znews.R;
 import com.jun.znews.entity.NewsArticleBean;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.utils.DateUtil;
-import com.jun.znews.widget.CustomScrollView;
+import com.jun.znews.widget.CustomArticleScrollView;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> implements  IArticleReadView{
@@ -29,10 +31,20 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
     private ImageView ar_back , ar_topLogo , ar_logo ;
     private Button ar_topLike , ar_like ;
     private RelativeLayout ar_topBar , ar_bar ;
-    private CustomScrollView ar_scrollView ;
+    private CustomArticleScrollView ar_scrollView ;
     private TextView ar_title ,ar_name , ar_topName , ar_updateTime , ar_topUpdateTime ;
     private WebView ar_webView ;
+    protected Button loadFail ;
+    protected TextView  loadingData ;
+    private String aid;
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        aid = getIntent().getStringExtra("aid");
+        Log.e("jun",aid);
+    }
 
     @Override
     public ArticleReadPresenter initPresent() {
@@ -46,6 +58,8 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
 
     @Override
     public void init() {
+        loadingData = findViewById(R.id.img_loadingData) ;
+        loadFail = findViewById(R.id.img_loadFail) ;
         ar_back = findViewById(R.id.ar_back);
         ar_topLogo = findViewById(R.id.ar_topLogo);
         ar_logo = findViewById(R.id.ar_logo);
@@ -72,9 +86,9 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
             }
         });
         setWebViewSetting() ;
-        ar_scrollView.setScrollViewListener(new CustomScrollView.ScrollViewListener() {
+        ar_scrollView.setScrollViewListener(new CustomArticleScrollView.ScrollViewListener() {
             @Override
-            public void onScrollChanged(CustomScrollView scrollView, int x, int scrollY, int oldx, int oldy) {
+            public void onScrollChanged(CustomArticleScrollView scrollView, int x, int scrollY, int oldx, int oldy) {
                 if (scrollY > ar_bar.getHeight()) {
                     ar_topBar.setVisibility(View.VISIBLE);
                 } else {
@@ -83,10 +97,16 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
                 }
             }
         });
+        loadFail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loading();
+                basePresenter.loadData(aid);
+            }
+        });
+
     }
-
     private void setWebViewSetting() {
-
         addjs(ar_webView);
         ar_webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         ar_webView.getSettings().setJavaScriptEnabled(true);
@@ -109,8 +129,7 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                String aid = getIntent().getStringExtra("aid");
-                Log.e("jun",aid);
+
                 basePresenter.loadData(aid);
             }
         });
@@ -136,7 +155,12 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
 
     @Override
     public void setData(final NewsArticleBean articleBean) {
-        if(articleBean==null) return ;
+        if(articleBean==null) {
+            loadFail();
+            return ;
+        }
+        loadSucceed();
+        ar_bar.setVisibility(View.VISIBLE);
         ar_title.setText(articleBean.getBody().getTitle());
         ar_updateTime.setText(DateUtil.getTimestampString(DateUtil.string2Date(articleBean.getBody().getUpdateTime(), "yyyy/MM/dd HH:mm:ss")));
         if (articleBean.getBody().getSubscribe() != null) {
@@ -160,14 +184,13 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
             ar_name.setText(articleBean.getBody().getSource());
             ar_topUpdateTime.setText(!TextUtils.isEmpty(articleBean.getBody().getAuthor()) ? articleBean.getBody().getAuthor() : articleBean.getBody().getEditorcode());
         }
+
         ar_webView.post(new Runnable() {
             @Override
             public void run() {
                 final String content = articleBean.getBody().getText();
                 String url = "javascript:show_content(\'" + content + "\')";
                 ar_webView.loadUrl(url);
-                //TODO
-                //showSuccess();
             }
         });
     }
@@ -176,4 +199,20 @@ public class ArticleReadActivity extends BaseActivity<ArticleReadPresenter> impl
     public LifecycleTransformer bindToLife() {
         return this.bindToLifecycle();
     }
+
+
+
+    public void loading(){
+        loadingData.setVisibility(View.VISIBLE);
+        loadFail.setVisibility(View.GONE);
+    }
+    public void loadSucceed(){
+        loadingData.setVisibility(View.GONE);
+        loadFail.setVisibility(View.GONE);
+    }
+    public void loadFail(){
+        loadFail.setVisibility(View.VISIBLE);
+        loadingData.setVisibility(View.GONE);
+    }
+
 }

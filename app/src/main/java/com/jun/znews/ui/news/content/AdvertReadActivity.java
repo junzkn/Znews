@@ -2,8 +2,6 @@ package com.jun.znews.ui.news.content;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -20,12 +18,13 @@ import com.jun.znews.ui.base.BaseActivity;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 
-public class AdvertActivity extends BaseActivity<ArticleReadPresenter> implements IArticleReadView {
+public class AdvertReadActivity extends BaseActivity<ArticleReadPresenter> implements IArticleReadView {
 
     private ProgressBar mPbProgress;
     private WebView mWebviewAdvert;
-    private ImageView back ;
+    private ImageView back;
 
+    private static final String URL = "url";
 
     @Override
     public ArticleReadPresenter initPresent() {
@@ -39,9 +38,9 @@ public class AdvertActivity extends BaseActivity<ArticleReadPresenter> implement
 
     @Override
     public void init() {
-        mPbProgress = findViewById(R.id.pb_progress) ;
-        mWebviewAdvert = findViewById(R.id.webview_advert) ;
-        back = findViewById(R.id.iv_back) ;
+        mPbProgress = findViewById(R.id.pb_progress);
+        mWebviewAdvert = findViewById(R.id.webview_advert);
+        back = findViewById(R.id.iv_back);
     }
 
     @Override
@@ -49,7 +48,7 @@ public class AdvertActivity extends BaseActivity<ArticleReadPresenter> implement
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AdvertActivity.this.finish();
+                AdvertReadActivity.this.finish();
             }
         });
 
@@ -83,7 +82,7 @@ public class AdvertActivity extends BaseActivity<ArticleReadPresenter> implement
 
 
         if (getIntent() == null) return;
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra(URL);
         if (!TextUtils.isEmpty(url)) {
             mWebviewAdvert.loadUrl(url);
         }
@@ -99,12 +98,11 @@ public class AdvertActivity extends BaseActivity<ArticleReadPresenter> implement
         return this.bindToLifecycle();
     }
 
-    private static final String Url = "url";
 
 
     public static void launch(Context context, String url) {
-        Intent intent = new Intent(context, AdvertActivity.class);
-        intent.putExtra(Url, url);
+        Intent intent = new Intent(context, AdvertReadActivity.class);
+        intent.putExtra(URL, url);
         context.startActivity(intent);
     }
 
@@ -120,12 +118,7 @@ public class AdvertActivity extends BaseActivity<ArticleReadPresenter> implement
         webview.getSettings().setAllowFileAccessFromFileURLs(true);
         webview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webview.getSettings().setDomStorageEnabled(true);
-        webview.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                return true;
-            }
-        });
+
     }
 
 
