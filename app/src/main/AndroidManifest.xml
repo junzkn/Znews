@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.WelcomeActivity"
+            android:name=".ui.welcome.WelcomeActivity"
             android:theme="@style/WelcomeTheme"></activity>
         <activity
-            android:name=".ui.news.content.ArticleReadActivity"
+            android:name=".ui.news.content.ArticleActivity"
             android:theme="@style/BGA"></activity>
         <activity
             android:name=".ui.news.content.AdvertReadActivity"

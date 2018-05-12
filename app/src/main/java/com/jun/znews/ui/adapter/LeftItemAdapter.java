@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.jun.znews.R;
 import com.jun.znews.ThisApp;
-import com.jun.znews.entity.LeftItemMenu;
-import com.jun.znews.utils.MenuDataUtils;
+import com.jun.znews.bean.LeftItemMenu;
+import com.jun.znews.utils.MenuDataUtil;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class LeftItemAdapter extends BaseAdapter {
     private List<LeftItemMenu> itemMenuList ;
     public LeftItemAdapter (){
         inflater = LayoutInflater.from(ThisApp.getInstance());
-        this.itemMenuList = MenuDataUtils.getLeftItemMenus() ;
+        this.itemMenuList = MenuDataUtil.getLeftItemMenus() ;
     }
     @Override
     public int getCount() {

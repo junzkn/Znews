@@ -13,12 +13,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.jun.znews.R;
-import com.jun.znews.entity.NewsArticleBean;
+import com.jun.znews.bean.NewsArticleBean;
 import com.jun.znews.ui.base.BaseActivity;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 
-public class AdvertReadActivity extends BaseActivity<ArticleReadPresenter> implements IArticleReadView {
+public class AdvertReadActivity extends BaseActivity<ReadPresenter> implements IReadView {
 
     private ProgressBar mPbProgress;
     private WebView mWebviewAdvert;
@@ -27,8 +27,8 @@ public class AdvertReadActivity extends BaseActivity<ArticleReadPresenter> imple
     private static final String URL = "url";
 
     @Override
-    public ArticleReadPresenter initPresent() {
-        return new ArticleReadPresenter(this);
+    public ReadPresenter initPresent() {
+        return new ReadPresenter(this);
     }
 
     @Override

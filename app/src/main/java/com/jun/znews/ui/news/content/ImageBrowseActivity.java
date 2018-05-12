@@ -7,14 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -25,8 +22,8 @@ import com.bumptech.glide.request.transition.Transition;
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.jun.znews.R;
-import com.jun.znews.entity.NewsArticleBean;
-import com.jun.znews.entity.NewsDetail;
+import com.jun.znews.bean.NewsArticleBean;
+import com.jun.znews.bean.NewsDetail;
 import com.jun.znews.net.ApiConstants;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.utils.ImageLoaderUtil;
@@ -40,7 +37,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
-public class ImageBrowseActivity extends BaseActivity<ArticleReadPresenter> implements IArticleReadView {
+public class ImageBrowseActivity extends BaseActivity<ReadPresenter> implements IReadView {
 
     private static final String AID = "aid";
     private static final String ISCMPP = "isCmpp";
@@ -76,8 +73,8 @@ public class ImageBrowseActivity extends BaseActivity<ArticleReadPresenter> impl
 
 
     @Override
-    public ArticleReadPresenter initPresent() {
-        return new ArticleReadPresenter(this);
+    public ReadPresenter initPresent() {
+        return new ReadPresenter(this);
     }
 
     @Override
@@ -234,13 +231,13 @@ public class ImageBrowseActivity extends BaseActivity<ArticleReadPresenter> impl
                         @Override
                         public void setDrawable(Drawable drawable) {
                             super.setDrawable(drawable);
-                            mProgressBar.setVisibility(View.VISIBLE);
+                            //mProgressBar.setVisibility(View.VISIBLE);
                         }
 
                         @Override
                         public void onLoadStarted(@Nullable Drawable placeholder) {
                             super.onLoadStarted(placeholder);
-                            mProgressBar.setVisibility(View.VISIBLE);
+                            //mProgressBar.setVisibility(View.VISIBLE);
 
                         }
 

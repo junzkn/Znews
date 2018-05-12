@@ -3,8 +3,8 @@ package com.jun.znews.net;
 import android.support.annotation.StringDef;
 import android.util.Log;
 
-import com.jun.znews.entity.NewsArticleBean;
-import com.jun.znews.entity.NewsDetail;
+import com.jun.znews.bean.NewsArticleBean;
+import com.jun.znews.bean.NewsDetail;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -39,28 +39,13 @@ public class NewsApi {
         return sInstance;
     }
 
-    /**
-     * 获取新闻详情
-     *
-     * @param id      频道ID值
-     * @param action  用户操作方式
-     *                1：下拉 down
-     *                2：上拉 up
-     *                3：默认 default
-     * @param pullNum 操作次数 累加
-     * @return
-     */
+
     public Observable<List<NewsDetail>> getNewsDetail(String id, @Actions String action, int pullNum) {
         Log.e("ee","1");
         return mService.getNewsDetail(id, action, pullNum);
     }
 
-    /**
-     * 获取新闻文章详情
-     * @param aid 文章aid  此处baseurl可能不同，需要特殊处理
-     *          1：aid 以 cmpp 开头则调用 getNewsArticleWithCmpp
-     * @return
-     */
+
     public Observable<NewsArticleBean> getNewsArticle(String aid){
         Log.e("ee","2");
 

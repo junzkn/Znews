@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_main_left_bg"
 
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <!--1.底部功能(左侧侧滑功能布局)-->
     <include
@@ -25,6 +25,7 @@
         >
         <!--顶部导航栏布局-->
         <include
+            android:id="@+id/topbar"
             layout="@layout/top_bar_common_layout" />
         <!--中间内容后面放入Fragment-->
         <FrameLayout
@@ -33,7 +34,7 @@
             android:layout_height="match_parent"
             >
             <fragment
-                class="com.jun.znews.ui.MainInfoFragment"
+                class="com.jun.znews.ui.news.main.MainNewsFragment"
                 android:id="@+id/main_info_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

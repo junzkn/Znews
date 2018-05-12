@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpModule {
 
-    OkHttpClient.Builder provideOkHttpClient() {
+    private static OkHttpClient.Builder provideOkHttpClient() {
         // 指定缓存路径,缓存大小100Mb
         Cache cache = new Cache(new File(ThisApp.getContext().getCacheDir(), "HttpCache"),
                 1024 * 1024 * 100);
@@ -32,7 +32,7 @@ public class HttpModule {
     }
 
 
-    NewsApi provideNewsApis() {
+    public static NewsApi provideNewsApis() {
         Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

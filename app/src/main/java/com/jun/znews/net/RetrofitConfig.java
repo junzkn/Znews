@@ -74,7 +74,6 @@ public class RetrofitConfig {
             Request request;
             HttpUrl modifiedUrl = originalRequest.url().newBuilder()
                     .addQueryParameter("uid", "862005033773876")
-                    .addQueryParameter("devid", ApiConstants.uid)
                     .addQueryParameter("proid", "ifengnews")
                     .addQueryParameter("vt", "5")
                     .addQueryParameter("publishid", "3329")
@@ -82,6 +81,10 @@ public class RetrofitConfig {
                     .addQueryParameter("df", "androidphone")
                     .addQueryParameter("os", "android_26")
                     .addQueryParameter("nw", "wifi")
+                    .addQueryParameter("gv", "6.1.0")
+                    .addQueryParameter("av", "6.1.0")
+                    .addQueryParameter("deviceid", "862005033773876")
+                    .addQueryParameter("publishid", "3329")
                     .build();
             request = originalRequest.newBuilder().url(modifiedUrl).build();
             return chain.proceed(request);

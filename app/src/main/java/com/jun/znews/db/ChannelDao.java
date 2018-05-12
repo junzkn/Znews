@@ -1,72 +1,61 @@
 package com.jun.znews.db;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import com.jun.znews.bean.Channel;
+
+import org.litepal.crud.DataSupport;
+import org.litepal.crud.callback.SaveCallback;
+import org.litepal.crud.callback.UpdateOrDeleteCallback;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ChannelDao {
 
-    private MySqLiteOpenHelper mySqliteOpenHelper;
-    public ChannelDao(Context context){
-        mySqliteOpenHelper = new MySqLiteOpenHelper(context);
-    }
-//    public void add(ChannelBean bean){
-//        SQLiteDatabase db = mySqliteOpenHelper.getReadableDatabase();
-//        db.beginTransaction();
-//        try{
-//            db.execSQL("insert into channel(channelNAme,channelID) values(?,?);", new Object[]{bean.name,bean.id,});
-//        }finally {
-//            db.endTransaction();
-//        }
-//        db.close();
-//
-//    }
-
-    public void del(String name){
-        SQLiteDatabase db = mySqliteOpenHelper.getReadableDatabase();
-        db.execSQL("delete from channel where name=?;", new Object[]{name});
-        db.close();
+    /**
+     * 获取所有频道
+     *
+     * @return
+     */
+    public static List<Channel> getChannels() {
+        return DataSupport.findAll(Channel.class);
     }
 
 
-    public void query(String name){
-        SQLiteDatabase db = mySqliteOpenHelper.getReadableDatabase();
-        //查询语句：cursor游标
-        Cursor cursor = db.rawQuery("select _id, name,phone from channel where name = ?", new String []{name});
-        //解析Cursor中的数据
-        if(cursor != null && cursor.getCount() >0){//判断cursor中是否存在数据
-            //循环遍历结果集，获取每一行的内容
-            while(cursor.moveToNext()){//条件，游标能否定位到下一行
-                //获取数据
-                int id = cursor.getInt(0);
-                String name_str = cursor.getString(1);
-                String phone = cursor.getString(2);
-                System.out.println("_id:"+id+";name:"+name_str+";phone:"+phone);
-            }
-            cursor.close();//关闭结果集
+    /**
+     * 保存所有频道
+     *
+     * @param channels
+     */
+    public static void saveChannels(final List<Channel> channels) {
+        if (channels == null) return;
+        if (channels.size() > 0) {
+            final List<Channel> channelList = new ArrayList<>();
+            channelList.addAll(channels);
+            DataSupport.deleteAllAsync(Channel.class).listen(new UpdateOrDeleteCallback() {
+                @Override
+                public void onFinish(int rowsAffected) {
+                    /**
+                     * 因为model之前被存储过了，再次存储就存不进去了。
+                     * 单个model调用一下clearSavedState方法就可以了，
+                     * 集合的话调用markAsDeleted方法。
+                     */
+                    DataSupport.markAsDeleted(channelList);
+                    DataSupport.saveAllAsync(channelList).listen(new SaveCallback() {
+                        @Override
+                        public void onFinish(boolean success) {
+
+                        }
+                    });
+                }
+            });
         }
-        //关闭数据库对象
-        db.close();
     }
 
-
-
-    private class MySqLiteOpenHelper extends SQLiteOpenHelper {
-
-        public MySqLiteOpenHelper(Context context) {
-            super(context, "info.db", null,1);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            db.execSQL("create table channel (channelName varchar(20),channelID varchar(20))");
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        }
-
+    /**
+     * 清空所有频道
+     */
+    public static void cleanChanels() {
+        DataSupport.deleteAll(Channel.class);
     }
 }

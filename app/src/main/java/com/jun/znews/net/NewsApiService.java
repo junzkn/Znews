@@ -1,7 +1,7 @@
 package com.jun.znews.net;
 
-import com.jun.znews.entity.NewsArticleBean;
-import com.jun.znews.entity.NewsDetail;
+import com.jun.znews.bean.NewsArticleBean;
+import com.jun.znews.bean.NewsDetail;
 
 import java.util.List;
 
@@ -12,24 +12,6 @@ import retrofit2.http.Url;
 
 
 public interface NewsApiService {
-//    @GET("ClientNews")
-//    Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
-//                                               @Query("action") String action,
-//                                               @Query("pullNum") String pullNum,
-//                                               @Query("uid") String uid,
-//                                               @Query("devid") String devid,
-//                                               @Query("proid") String proid,
-//                                               @Query("vt") String vt,
-//                                               @Query("publishid") String publishid,
-//                                               @Query("screen") String screen,
-//                                               @Query("os") String os,
-//                                               @Query("df") String df,
-//                                               @Query("nw") String nw);
-
-    @GET("ClientNews")
-    Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
-                                               @Query("page") int page
-    );
 
     @GET("ClientNews")
     Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
