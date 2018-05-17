@@ -1,23 +1,16 @@
 package com.jun.znews.ui.news.Presenter;
 
-import android.util.Log;
-
-import com.jun.znews.bean.NewsArticleBean;
-import com.jun.znews.bean.NewsDetail;
-import com.jun.znews.bean.NewsOtherVideoBean;
-import com.jun.znews.bean.NewsVideoBean;
+import com.jun.znews.bean.NewsOtherVideo;
+import com.jun.znews.bean.NewsVideo;
 import com.jun.znews.net.RxSchedulers;
 import com.jun.znews.ui.base.BasePresenter;
 import com.jun.znews.ui.news.Contract.IVideoContract;
 import com.jun.znews.ui.news.model.VideoModel;
 
-import java.util.List;
-
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 
 public class VideoPresenter extends BasePresenter<IVideoContract.IVideoView,IVideoContract.IVideoModel> implements IVideoContract.IVideoPresenter {
 
@@ -33,16 +26,16 @@ public class VideoPresenter extends BasePresenter<IVideoContract.IVideoView,IVid
 
     @Override
     public void loadData(String guid) {
-        Observable<NewsVideoBean> observable = mModel.getData(guid);
+        Observable<NewsVideo> observable = mModel.getData(guid);
         observable
-                .compose(RxSchedulers.<NewsVideoBean>applySchedulers())
-                .compose(mView.<NewsVideoBean>bindToLife())
-                .subscribe(new Observer<NewsVideoBean>() {
+                .compose(RxSchedulers.<NewsVideo>applySchedulers())
+                .compose(mView.<NewsVideo>bindToLife())
+                .subscribe(new Observer<NewsVideo>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                     }
                     @Override
-                    public void onNext(@NonNull NewsVideoBean videoBean) {
+                    public void onNext(@NonNull NewsVideo videoBean) {
                         mView.setData(videoBean.getSingleVideoInfo().get(0));
                     }
                     @Override
@@ -57,16 +50,16 @@ public class VideoPresenter extends BasePresenter<IVideoContract.IVideoView,IVid
 
     @Override
     public void loadOtherData(String guid) {
-        Observable<NewsOtherVideoBean> observable = mModel.getOtherData(guid);
+        Observable<NewsOtherVideo> observable = mModel.getOtherData(guid);
         observable
-                .compose(RxSchedulers.<NewsOtherVideoBean>applySchedulers())
-                .compose(mView.<NewsOtherVideoBean>bindToLife())
-                .subscribe(new Observer<NewsOtherVideoBean>() {
+                .compose(RxSchedulers.<NewsOtherVideo>applySchedulers())
+                .compose(mView.<NewsOtherVideo>bindToLife())
+                .subscribe(new Observer<NewsOtherVideo>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
                     }
                     @Override
-                    public void onNext(@NonNull NewsOtherVideoBean data) {
+                    public void onNext(@NonNull NewsOtherVideo data) {
                         mView.setOtherData(data.getGuidRelativeVideoInfo());
                     }
                     @Override

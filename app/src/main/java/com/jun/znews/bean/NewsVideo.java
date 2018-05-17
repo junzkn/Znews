@@ -3,7 +3,7 @@ package com.jun.znews.bean;
 import java.io.Serializable;
 import java.util.List;
 
-public class NewsVideoBean implements Serializable {
+public class NewsVideo implements Serializable {
 
     private List<VideoBean> singleVideoInfo;
 

@@ -14,8 +14,7 @@ public class Channel extends DataSupport implements Serializable, MultiItemEntit
     public static final int TYPE_MY_CHANNEL = 3;
     public static final int TYPE_OTHER_CHANNEL = 4;
 
-    @Column(ignore = true)
-    public int itemtype;
+    private int itemtype;
 
     private String channelId;
     private String channelName;

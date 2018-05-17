@@ -7,11 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.widget.ScrollView;
 
-/**
- * desc:
- * author: Will .
- * date: 2017/9/24 .
- */
+
 public class CustomImageScrollView extends ScrollView {
     private Context mContext;
 

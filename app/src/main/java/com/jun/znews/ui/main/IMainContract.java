@@ -1,11 +1,11 @@
 package com.jun.znews.ui.main;
 
-import com.jun.znews.bean.WeatherBean;
+import com.jun.znews.bean.Weather;
 
 public interface IMainContract {
 
     interface IMainView{
-        void setWeather(WeatherBean.HeWeather6Bean heWeather6Bean);
+        void setWeather(Weather.HeWeather6Bean heWeather6Bean);
     }
 
     interface IMainPresenter{

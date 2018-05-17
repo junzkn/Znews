@@ -1,8 +1,7 @@
 package com.jun.znews.ui.news.Contract;
 
-import com.jun.znews.bean.NewsArticleBean;
-import com.jun.znews.bean.NewsOtherVideoBean;
-import com.jun.znews.bean.NewsVideoBean;
+import com.jun.znews.bean.NewsOtherVideo;
+import com.jun.znews.bean.NewsVideo;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.List;
@@ -24,8 +23,8 @@ public interface IVideoContract {
     }
 
     interface IVideoView {
-        void setData(NewsVideoBean.VideoBean newsVideoBean);
-        void setOtherData(List<NewsOtherVideoBean.GuidRelativeVideoInfoBean> data) ;
+        void setData(NewsVideo.VideoBean newsVideoBean);
+        void setOtherData(List<NewsOtherVideo.GuidRelativeVideoInfoBean> data) ;
         LifecycleTransformer bindToLife();
     }
 }

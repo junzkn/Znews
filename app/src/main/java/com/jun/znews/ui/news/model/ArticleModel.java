@@ -3,7 +3,7 @@ package com.jun.znews.ui.news.model;
 import com.jun.znews.ThisApp;
 import com.jun.znews.bean.NewsArticleBean;
 import com.jun.znews.net.ApiConstants;
-import com.jun.znews.net.NewsApiService;
+import com.jun.znews.net.NewsApi;
 import com.jun.znews.net.RetrofitConfig;
 import com.jun.znews.ui.news.Contract.IArticleContract;
 
@@ -40,13 +40,13 @@ public class ArticleModel implements IArticleContract.IArticleModel {
                 .client(builder.build())
                 .build();
 
-        NewsApiService newsApiService = retrofit.create(NewsApiService.class);
+        NewsApi newsApi = retrofit.create(NewsApi.class);
 
         Observable<NewsArticleBean> observable ;
         if (aid.startsWith("sub")){
-            observable = newsApiService.getNewsArticleWithSub(aid);
+            observable = newsApi.getNewsArticleWithSub(aid);
         }else {
-            observable = newsApiService.getNewsArticleWithCmpp(ApiConstants.sGetNewsArticleCmppApi + ApiConstants.sGetNewsArticleDocCmppApi,aid);
+            observable = newsApi.getNewsArticleWithCmpp(ApiConstants.sGetNewsArticleCmppApi + ApiConstants.sGetNewsArticleDocCmppApi,aid);
         }
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

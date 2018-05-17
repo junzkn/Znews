@@ -2,7 +2,7 @@ package com.jun.znews.bean;
 
 import java.util.List;
 
-public class WeatherBean {
+public class Weather {
 
 
     private List<HeWeather6Bean> HeWeather6;

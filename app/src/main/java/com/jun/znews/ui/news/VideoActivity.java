@@ -1,11 +1,9 @@
 package com.jun.znews.ui.news;
 
-import android.content.pm.ActivityInfo;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -14,8 +12,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jun.video.JZVideoPlayer;
 import com.jun.video.JZVideoPlayerStandard;
 import com.jun.znews.R;
-import com.jun.znews.bean.NewsOtherVideoBean;
-import com.jun.znews.bean.NewsVideoBean;
+import com.jun.znews.bean.NewsOtherVideo;
+import com.jun.znews.bean.NewsVideo;
 import com.jun.znews.ui.adapter.OtherVideoAdapter;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.ui.news.Contract.IVideoContract;
@@ -35,7 +33,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
     private JZVideoPlayerStandard videoPlayer;
     private OtherVideoAdapter otherVideoAdapter;
     private LinearLayoutManager linearLayoutManager;
-    List<NewsOtherVideoBean.GuidRelativeVideoInfoBean> beanList;
+    List<NewsOtherVideo.GuidRelativeVideoInfoBean> beanList;
     private int lastPosition = 0;
     private String tag = "";
     View lastView;
@@ -69,7 +67,6 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
 
     @Override
     public void prepare() {
-        JZVideoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;
         rl.setAdapter(otherVideoAdapter);
         rl.setHasFixedSize(true);
         rl.setLayoutManager(linearLayoutManager);
@@ -83,7 +80,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
                     lastView.findViewById(R.id.iv_isPlay).setVisibility(View.VISIBLE);
                     lastView.findViewById(R.id.tv_show).setVisibility(View.GONE);
                 }
-                NewsOtherVideoBean.GuidRelativeVideoInfoBean item = otherVideoAdapter.getItem(position);
+                NewsOtherVideo.GuidRelativeVideoInfoBean item = otherVideoAdapter.getItem(position);
                 view.findViewById(R.id.iv_isPlay).setVisibility(View.GONE);
                 view.findViewById(R.id.tv_show).setVisibility(View.VISIBLE);
                 lastView = view;
@@ -103,7 +100,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
     }
 
     @Override
-    public void setData(NewsVideoBean.VideoBean videoBean) {
+    public void setData(NewsVideo.VideoBean videoBean) {
         if(videoBean!=null){
             String urlH = videoBean.getVideoURLHigh();
             String urlM = videoBean.getVideoURLMid();
@@ -122,9 +119,9 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
     }
 
     @Override
-    public void setOtherData(List<NewsOtherVideoBean.GuidRelativeVideoInfoBean> data) {
+    public void setOtherData(List<NewsOtherVideo.GuidRelativeVideoInfoBean> data) {
         if(data!=null){
-            List<NewsOtherVideoBean.GuidRelativeVideoInfoBean> n = new ArrayList<>() ;
+            List<NewsOtherVideo.GuidRelativeVideoInfoBean> n = new ArrayList<>() ;
             for(int i=0 ; i<8 && i<data.size() ; i++){
                 n.add(data.get(i)) ;
             }

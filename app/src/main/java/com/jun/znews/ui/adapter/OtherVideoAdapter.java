@@ -10,27 +10,25 @@ import android.widget.ImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.jun.znews.R;
-import com.jun.znews.bean.NewsOtherVideoBean;
+import com.jun.znews.bean.NewsOtherVideo;
 import com.jun.znews.utils.ImageLoaderUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.TimeZone;
 
-public class OtherVideoAdapter extends BaseQuickAdapter<NewsOtherVideoBean.GuidRelativeVideoInfoBean, BaseViewHolder> {
+public class OtherVideoAdapter extends BaseQuickAdapter<NewsOtherVideo.GuidRelativeVideoInfoBean, BaseViewHolder> {
 
     private Context context ;
-    public OtherVideoAdapter(Context context , @LayoutRes int layoutResId, @Nullable List<NewsOtherVideoBean.GuidRelativeVideoInfoBean> data) {
+    public OtherVideoAdapter(Context context , @LayoutRes int layoutResId, @Nullable List<NewsOtherVideo.GuidRelativeVideoInfoBean> data) {
         super(layoutResId, data);
         this.context = context ;
     }
 
     @Override
-    protected void convert(BaseViewHolder viewHolder, NewsOtherVideoBean.GuidRelativeVideoInfoBean item) {
+    protected void convert(BaseViewHolder viewHolder, NewsOtherVideo.GuidRelativeVideoInfoBean item) {
         viewHolder.itemView.setTag(item.getColumnId());
         viewHolder.setText(R.id.tv_source,item.getColumnName())
                 .setText(R.id.ar_title,item.getName());
-        List<NewsOtherVideoBean.GuidRelativeVideoInfoBean.FilesBean> files = item.getFiles();
+        List<NewsOtherVideo.GuidRelativeVideoInfoBean.FilesBean> files = item.getFiles();
         ImageLoaderUtil.LoadImage(context, files.get(files.size()-1).getMediaUrl(), (ImageView) viewHolder.getView(R.id.ar_logo));
     }
 

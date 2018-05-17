@@ -1,16 +1,14 @@
 package com.jun.znews.ui.news.model;
 
 import com.jun.znews.ThisApp;
-import com.jun.znews.bean.NewsArticleBean;
-import com.jun.znews.bean.NewsOtherVideoBean;
-import com.jun.znews.bean.NewsVideoBean;
+import com.jun.znews.bean.NewsOtherVideo;
+import com.jun.znews.bean.NewsVideo;
 import com.jun.znews.net.ApiConstants;
-import com.jun.znews.net.NewsApiService;
+import com.jun.znews.net.NewsApi;
 import com.jun.znews.net.RetrofitConfig;
 import com.jun.znews.ui.news.Contract.IVideoContract;
 
 import java.io.File;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
@@ -21,7 +19,6 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class VideoModel implements IVideoContract.IVideoModel {
 
@@ -43,8 +40,8 @@ public class VideoModel implements IVideoContract.IVideoModel {
                 .client(builder.build())
                 .build();
 
-        NewsApiService newsApiService = retrofit.create(NewsApiService.class);
-        Observable<NewsVideoBean> observable = newsApiService.getNewsVideo(guid);
+        NewsApi newsApi = retrofit.create(NewsApi.class);
+        Observable<NewsVideo> observable = newsApi.getNewsVideo(guid);
         return observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
@@ -68,8 +65,8 @@ public class VideoModel implements IVideoContract.IVideoModel {
                 .client(builder.build())
                 .build();
 
-        NewsApiService newsApiService = retrofit.create(NewsApiService.class);
-        Observable<NewsOtherVideoBean> observable = newsApiService.getOtherVideo(guid);
+        NewsApi newsApi = retrofit.create(NewsApi.class);
+        Observable<NewsOtherVideo> observable = newsApi.getOtherVideo(guid);
         return observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

@@ -69,8 +69,7 @@ public class ImageLoaderUtil {
      */
     public static void LoadImage(Context context, Object url, ImageViewTarget imageViewTarget) {
         Glide.with(context).load(url)
-                .apply(new RequestOptions()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL))
+                .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
                 .transition(new DrawableTransitionOptions().crossFade(800))
                 .into(imageViewTarget);
     }

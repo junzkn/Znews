@@ -52,14 +52,23 @@ public class SettingSwipeView extends RelativeLayout {
     }
 
 
+    public boolean isCheck(){
+        return cb_setting_select.isChecked() ;
+    }
+
+    public void setCheck(boolean isCheck){
+        cb_setting_select.setChecked(isCheck);
+    }
+
+
     public void setOnSettingSwipeListener(SettingSwipeListener settingSwipeListener){
         this.LLListener = settingSwipeListener;
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                setCheck(!isCheck());
                 if(LLListener!=null){
-                    cb_setting_select.setChecked(!cb_setting_select.isChecked());
-                    LLListener.onClick(cb_setting_select.isChecked());
+                    LLListener.onClick(isCheck());
                 }
             }
         });

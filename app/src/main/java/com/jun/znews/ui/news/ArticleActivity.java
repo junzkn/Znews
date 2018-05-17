@@ -37,8 +37,8 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
     private CustomArticleScrollView ar_scrollView ;
     private TextView ar_title ,ar_name , ar_topName , ar_updateTime , ar_topUpdateTime ;
     private WebView ar_webView ;
-    protected Button loadFail ;
-    protected TextView  loadingData ;
+    protected View loadFail ;
+    protected View  loadingData ;
     private String aid;
     private ArrayList<String> listimg;
 

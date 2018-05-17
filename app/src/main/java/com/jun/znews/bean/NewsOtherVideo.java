@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class NewsOtherVideoBean implements Serializable {
+public class NewsOtherVideo implements Serializable {
     private List<GuidRelativeVideoInfoBean> guidRelativeVideoInfo;
 
     public List<GuidRelativeVideoInfoBean> getGuidRelativeVideoInfo() {

@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
-import com.jun.znews.bean.WeatherBean;
+import com.jun.znews.bean.Weather;
 import com.jun.znews.net.ApiConstants;
-import com.jun.znews.net.WeatherApiService;
+import com.jun.znews.net.WeatherApi;
 import com.jun.znews.ui.base.BasePresenter;
 
 import io.reactivex.Observer;
@@ -57,7 +57,7 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView, IMainC
         }
 
         myLocationListener myLocationListener = new myLocationListener();
-        lm.requestLocationUpdates(bestProvider, 0, 0, myLocationListener);
+        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, myLocationListener);
 
         retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
@@ -97,18 +97,18 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView, IMainC
     }
 
     private void getWeatherFromNet(String s) {
-        retrofit.create(WeatherApiService.class)
+        retrofit.create(WeatherApi.class)
                 .getWeather(s, Weather_Key)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<WeatherBean>() {
+                .subscribe(new Observer<Weather>() {
                     @Override
                     public void onSubscribe(Disposable d) {
                     }
 
                     @Override
-                    public void onNext(WeatherBean weatherBean) {
-                        mView.setWeather(weatherBean.getHeWeather6().get(0));
+                    public void onNext(Weather weather) {
+                        mView.setWeather(weather.getHeWeather6().get(0));
                     }
                     @Override
                     public void onError(Throwable e) {

@@ -11,12 +11,10 @@ import android.widget.Button;
 
 import com.jun.znews.R;
 import com.jun.znews.ui.main.MainActivity;
-import com.jun.znews.widget.CustomVideoView;
 
 public class WelcomeActivity extends AppCompatActivity {
 
     private Button btn_splash;
-    private CustomVideoView vv_splash;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -32,35 +30,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     public void init() {
-        vv_splash = findViewById(R.id.vv_welcome);
         btn_splash = findViewById(R.id.btn_welcome);
     }
 
     public void prepare() {
-        vv_splash.setVideoURI(Uri.parse("android.resource://" + this.getPackageName() + "/" + R.raw.kr36));
-        vv_splash.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                openMainActivity();
-            }
-        });
-        btn_splash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (vv_splash.isPlaying()) {
-                    vv_splash.stopPlayback();
-                    vv_splash = null;
-                }
-                openMainActivity();
-            }
-        });
+
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        vv_splash.start();
     }
 
     private void openMainActivity() {

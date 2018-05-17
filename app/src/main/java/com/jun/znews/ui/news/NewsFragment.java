@@ -50,8 +50,8 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsCo
     private LinearLayoutManager linearLayoutManager;
     private RelativeLayout top_toast ;
     private TextView top_toast_text ;
-    protected Button loadFail ;
-    protected TextView  loadingData ;
+    protected View loadFail ;
+    protected View  loadingData ;
     Dialog delDialog;
     NewsAdapter detailAdapter;
     List<NewsDetail.ItemBean> beanList;

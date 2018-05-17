@@ -3,7 +3,7 @@ package com.jun.znews.ui.news.model;
 import com.jun.znews.ThisApp;
 import com.jun.znews.bean.NewsDetail;
 import com.jun.znews.net.ApiConstants;
-import com.jun.znews.net.NewsApiService;
+import com.jun.znews.net.NewsApi;
 import com.jun.znews.net.RetrofitConfig;
 import com.jun.znews.ui.news.Contract.INewsContract;
 
@@ -43,9 +43,9 @@ public class NewsModel implements INewsContract.INewsModel {
                 .client(builder.build())
                 .build();
 
-        NewsApiService newsApiService = retrofit.create(NewsApiService.class);
+        NewsApi newsApi = retrofit.create(NewsApi.class);
 
-        Observable<List<NewsDetail>> observable = newsApiService.getNewsDetail(id, action, num)
+        Observable<List<NewsDetail>> observable = newsApi.getNewsDetail(id, action, num)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 

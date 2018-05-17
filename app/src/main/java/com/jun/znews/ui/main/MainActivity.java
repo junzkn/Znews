@@ -5,11 +5,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,11 +18,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jun.znews.R;
-import com.jun.znews.bean.WeatherBean;
+import com.jun.znews.bean.Weather;
 import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.ui.adapter.LeftItemAdapter;
 import com.jun.znews.ui.base.BaseActivity;
-import com.jun.znews.ui.base.BasePresenter;
 import com.jun.znews.ui.setting.SettingActivity;
 import com.jun.znews.ui.suggert.SuggestActivity;
 import com.jun.znews.ui.user.LoginActivity;
@@ -52,6 +50,14 @@ public class MainActivity extends BaseActivity<MainPresenter>  implements IMainC
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,
     };
+    private int width;
+    private int height;
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            return true;
+        }
+    }) ;
 
 
     @Override
@@ -84,7 +90,6 @@ public class MainActivity extends BaseActivity<MainPresenter>  implements IMainC
         location = findViewById(R.id.location) ;
         wendu = findViewById(R.id.wendu) ;
         spUtil = SharedPreferencesUtil.getInstance(this);
-
     }
 
     @Override
@@ -98,10 +103,13 @@ public class MainActivity extends BaseActivity<MainPresenter>  implements IMainC
         iv_text.setOnClickListener(customOnClickListener);
         top_bar_search.setOnClickListener(customOnClickListener);
         basePresenter.getWeather();
+
+        top_bar_icon.setImageResource(R.mipmap.ic_launcher);
+        iv_bottom.setImageResource(R.mipmap.ic_launcher);
     }
 
     @Override
-    public void setWeather(WeatherBean.HeWeather6Bean bean) {
+    public void setWeather(Weather.HeWeather6Bean bean) {
         if(bean!=null){
             String loca = bean.getBasic().getLocation();
             String cond_code = bean.getNow().getCond_code();
@@ -174,6 +182,14 @@ public class MainActivity extends BaseActivity<MainPresenter>  implements IMainC
                 case 1:
                     break;
                 case 2:
+                    drag_layout.close();
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) ;
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            recreate();
+                        }
+                    },1000);
                     break;
                 case 3:
                     Intent intent3 = new Intent(getApplicationContext(), SettingActivity.class);
@@ -197,4 +213,8 @@ public class MainActivity extends BaseActivity<MainPresenter>  implements IMainC
     public  MainDragLayout getDrag_layout() {
         return drag_layout;
     }
+
+
+
+
 }

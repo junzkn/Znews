@@ -2,8 +2,8 @@ package com.jun.znews.net;
 
 import com.jun.znews.bean.NewsArticleBean;
 import com.jun.znews.bean.NewsDetail;
-import com.jun.znews.bean.NewsOtherVideoBean;
-import com.jun.znews.bean.NewsVideoBean;
+import com.jun.znews.bean.NewsOtherVideo;
+import com.jun.znews.bean.NewsVideo;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 
-public interface NewsApiService {
+public interface NewsApi {
 
     @GET("ClientNews")
     Observable<List<NewsDetail>> getNewsDetail(@Query("id") String id,
@@ -29,9 +29,9 @@ public interface NewsApiService {
                                                        @Query("aid") String aid);
 
     @GET("api_phoenixtv_details")
-    Observable<NewsVideoBean> getNewsVideo(@Query("guid") String guid);
+    Observable<NewsVideo> getNewsVideo(@Query("guid") String guid);
 
     @GET("getGuidRelativeVideoList")
-    Observable<NewsOtherVideoBean> getOtherVideo(@Query("guid") String guid);
+    Observable<NewsOtherVideo> getOtherVideo(@Query("guid") String guid);
 
 }

@@ -19,19 +19,19 @@
 
         </android.support.v7.widget.RecyclerView>
 
-        <TextView
+        <ProgressBar
             android:id="@+id/img_loadingData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="加载中" />
+            />
 
-        <Button
+        <TextView
             android:id="@+id/img_loadFail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="加载失败"
+            android:text="加载失败\n点击重试"
             android:visibility="gone" />
 
 
