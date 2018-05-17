@@ -9,11 +9,11 @@ import java.util.List;
 public class MenuDataUtil {
     public static List<LeftItemMenu> getLeftItemMenus(){
         List<LeftItemMenu> menus = new ArrayList<>();
-        menus.add(new LeftItemMenu(R.drawable.icon_zhanghaoxinxi,"账号信息"));
-        menus.add(new LeftItemMenu(R.drawable.icon_wodeguanzhu,"我的关注"));
-        menus.add(new LeftItemMenu(R.drawable.icon_shoucang,"我的收藏"));
-        menus.add(new LeftItemMenu(R.drawable.icon_yijianfankui,"意见反馈"));
+        menus.add(new LeftItemMenu(R.drawable.icon_shoucang,"我的关注"));
+        menus.add(new LeftItemMenu(R.drawable.lishi,"历史"));
+        menus.add(new LeftItemMenu(R.drawable.zhuti,"主题"));
         menus.add(new LeftItemMenu(R.drawable.icon_shezhi,"设置"));
+        menus.add(new LeftItemMenu(R.drawable.fankui,"反馈"));
         return menus ;
     }
 }

@@ -15,7 +15,7 @@ public class NewsUtil {
     //文章类型
     public static final String TYPE_DOC = "doc";
     //广告类型
-    public static final String TYPE_ADVERT = "advert";
+    public static final String TYPE_ADVERT = "advert" ;
     //图片类型
     public static final String TYPE_SLIDE = "slide";
     //视频类型

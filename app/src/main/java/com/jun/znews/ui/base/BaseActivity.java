@@ -6,12 +6,13 @@ import android.view.View;
 
 import com.jun.znews.R;
 import com.trello.rxlifecycle2.components.RxActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
 
 
-public abstract class BaseActivity<T extends BasePresenter> extends RxActivity implements BGASwipeBackHelper.Delegate {
+public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatActivity implements BGASwipeBackHelper.Delegate {
 
     public T basePresenter;
     protected BGASwipeBackHelper mSwipeBackHelper;
@@ -26,6 +27,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxActivity i
         basePresenter = initPresent();
         prepare();
     }
+
 
     private void initSwipeBackFinish() {
         mSwipeBackHelper = new BGASwipeBackHelper(this, this);
@@ -48,9 +50,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxActivity i
     }
 
 
+    /**
+     * 是否支持滑动
+     * @return
+     */
     @Override
     public boolean isSupportSwipeBack() {
-        return true;
+        return false;
     }
 
 

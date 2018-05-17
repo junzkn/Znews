@@ -59,7 +59,7 @@ public class DeleteGridViewAdapter extends BaseAdapter{
         }
         delReason.setText(text);
         if(position==0){
-            delReason.setTextColor(R.color.themeColor);
+            delReason.setTextColor(context.getResources().getColor(R.color.colorRed));
             delReason.setBackground(context.getResources().getDrawable(R.drawable.delpop_tv_selected_bg));
         }
 

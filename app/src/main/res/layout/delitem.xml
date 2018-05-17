@@ -11,6 +11,7 @@
         android:layout_marginBottom="15dp"
         android:gravity="center"
         android:layout_width="300dp"
+        android:textColor="@color/colorBlack"
         android:layout_height="wrap_content"
         android:text="选择原因，精准屏蔽"
         android:textSize="16sp" />
@@ -32,6 +33,7 @@
         android:layout_width="250dp"
         android:id="@+id/btn_commit"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorBlack"
         android:text="提交"
         android:padding="5dp"
         android:textSize="16sp" />

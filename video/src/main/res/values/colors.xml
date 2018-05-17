@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#A984DC</color>
+
+    <color name="themeColor">#A984DC</color>
+    <color name="themeColorDeep">#ab29ec</color>
+    <color name="themeColorT">#88A984DC</color>
+    <color name="themeColorS">#d1b0ff</color>
+    <color name="colorBlack">#ff000000</color>
+    <color name="colorWhite">#ffffffff</color>
+    <color name="colorGray">#646464</color>
+    <color name="colorRed">#ff0000</color>
+</resources>

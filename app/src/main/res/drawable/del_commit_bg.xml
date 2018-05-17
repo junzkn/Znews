@@ -4,7 +4,7 @@
 	<corners
 		android:radius="50dp" />
 	<!-- 实心 -->
-	<solid android:color="@color/themeColor"/>
+	<solid android:color="@color/colorRed"/>
 
 
 </shape>

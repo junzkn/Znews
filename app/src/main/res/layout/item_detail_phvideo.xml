@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <TextView
         android:id="@+id/ar_title"
         android:layout_width="0dp"
@@ -89,7 +88,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/ar_logo"
         app:layout_constraintRight_toRightOf="@+id/ar_logo"
         app:layout_constraintTop_toTopOf="@+id/ar_logo"
-        app:srcCompat="@drawable/ic_play"/>
+        app:srcCompat="@drawable/play"/>
 
     <TextView
         android:id="@+id/tv_time"
@@ -101,4 +100,21 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/ar_logo"
         app:layout_constraintRight_toRightOf="@+id/ar_logo"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/themeColor"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
 </android.support.constraint.ConstraintLayout>

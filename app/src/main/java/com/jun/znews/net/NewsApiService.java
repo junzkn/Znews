@@ -2,6 +2,8 @@ package com.jun.znews.net;
 
 import com.jun.znews.bean.NewsArticleBean;
 import com.jun.znews.bean.NewsDetail;
+import com.jun.znews.bean.NewsOtherVideoBean;
+import com.jun.znews.bean.NewsVideoBean;
 
 import java.util.List;
 
@@ -26,5 +28,10 @@ public interface NewsApiService {
     Observable<NewsArticleBean> getNewsArticleWithCmpp(@Url String url,
                                                        @Query("aid") String aid);
 
+    @GET("api_phoenixtv_details")
+    Observable<NewsVideoBean> getNewsVideo(@Query("guid") String guid);
+
+    @GET("getGuidRelativeVideoList")
+    Observable<NewsOtherVideoBean> getOtherVideo(@Query("guid") String guid);
 
 }

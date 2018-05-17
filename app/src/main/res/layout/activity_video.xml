@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.news.VideoActivity">
+
+
+        <com.jun.video.JZVideoPlayerStandard
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="240dp">
+        </com.jun.video.JZVideoPlayerStandard>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+
+</LinearLayout>

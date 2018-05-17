@@ -40,7 +40,7 @@
             android:id="@+id/top_toast"
             android:layout_width="300dp"
             android:layout_height="30dp"
-            android:background="#D6E9F6"
+            android:background="@color/themeColorS"
             android:visibility="gone">
             <TextView
                 android:id="@+id/top_toast_text"
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/news_toast"
-                android:textColor="#3393D5"
+                android:textColor="@color/colorWhite"
                 android:textSize="12sp" />
 
         </RelativeLayout>

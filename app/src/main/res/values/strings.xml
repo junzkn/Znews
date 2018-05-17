@@ -24,6 +24,17 @@
     <string name="githubUrl">https://github.com/Will-Ls</string>
     <string name="email">liwanglin_001@163.com</string>
 
+    <!-- 意见反馈 -->
+    <string name="string_tv_new_suggest">新需求建议</string>
+    <string name="string_tv_question_classify">问题类型</string>
+    <string name="string_tv_suggest_content_hint">请输入您的宝贵建议和问题(必填)</string>
+    <string name="string_tv_suggest_phone">联系方式 : </string>
+    <string name="string_tv_suggest_phone_hint">必填</string>
+    <string name="string_confirm_ing">正在提交,请稍后</string>
+    <string name="update_notice_finish">下载完成，点击浏览</string>
+    <string name="update_notice_nomemory">存储空间不足，请清理空间后，重新下载。</string>
+    <string name="update_notice_error">下载过程中出错，请重新下载。</string>
+
 
     //新闻频道
     <string-array name="news_channel_name">
@@ -79,6 +90,17 @@
         <item>MENGCHONG,FOCUSMENGCHONG</item>
         <item>LY67,FOCUSLY67,SECNAVLY67</item>
 
+    </string-array>
+
+    <!-- 建议类型 -->
+    <string-array name="array_suggest_type">
+        <item>新需求建议</item>
+        <item>功能建议</item>
+        <item>界面建议</item>
+        <item>操作问题</item>
+        <item>质量问题</item>
+        <item>投诉</item>
+        <item>其他</item>
     </string-array>
 
 

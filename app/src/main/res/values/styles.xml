@@ -27,5 +27,16 @@
     </style>
 
 
+    <style name="style_textview_one">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="dialogSlideAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_bottom_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_bottom_slide_out</item>
+    </style>
 
 </resources>

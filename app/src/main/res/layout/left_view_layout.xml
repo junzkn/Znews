@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="30dp"
@@ -19,12 +20,13 @@
             android:src="@drawable/icon_avatar_white" />
 
         <TextView
+            android:id="@+id/iv_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:text="junzkn"
-            android:textColor="#ffffff"
+            android:text="点击登录"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp" />
     </LinearLayout>
     <!--中间信息列表-->
@@ -32,21 +34,60 @@
         android:id="@+id/lv_left_main"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tv_mail"
         android:layout_below="@+id/ll1"
+        android:layout_above="@+id/weatherLayout"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="50dp"
         android:divider="@null"
         android:scrollbars="none">
     </ListView>
-    <!--底部信息栏-->
-    <TextView
-        android:id="@+id/tv_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <RelativeLayout
+        android:id="@+id/weatherLayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:text="13425514940@163.com"
-        android:textColor="#ffffff"
-        android:textSize="15sp" />
+        >
+
+
+        <ImageView
+            android:id="@+id/weather"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/weather" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView"
+            android:gravity="center"
+            android:text="北京"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/wendu"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_toEndOf="@+id/weather"
+            android:text="20°C"
+            android:textColor="@color/colorWhite"
+            android:textSize="25sp" />
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/wendu"
+            android:layout_toEndOf="@+id/weather"
+            app:srcCompat="@drawable/dingwei" />
+
+
+    </RelativeLayout>
+
+
+
 </RelativeLayout>

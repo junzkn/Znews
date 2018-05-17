@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_centerVertical="true"
+            android:text="设置"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:background="@drawable/btn_gointo"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:layout_height="1px"
+            android:layout_width="match_parent">
+        </View>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.SettingActivity"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/ar_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/login_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="setting"
+            android:layout_toRightOf="@id/ar_back"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/ar_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_read_back" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_alignParentBottom="true"
+            android:background="#e6e6e6" />
+
+    </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:background="#11646464"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:text="lilkan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.jun.znews.widget.SettingSwipeView
+                    app:desTitle="Wi-Fi"
+                    android:id="@+id/siv_wutu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingSwipeView>
+                <com.jun.znews.widget.SettingSwipeView
+                    app:desTitle="Wi-Fi"
+                    android:id="@+id/siv_wifibofang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingSwipeView>
+                <com.jun.znews.widget.SettingSwipeView
+                    app:desTitle="Wi-Fi"
+                    android:id="@+id/siv_eifilianxubofang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingSwipeView>
+                <com.jun.znews.widget.SettingSwipeView
+                    app:desTitle="Wi-Fi"
+                    android:id="@+id/siv_guanggao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingSwipeView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
