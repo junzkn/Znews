@@ -74,18 +74,18 @@ public class RetrofitConfig {
             Request request;
             HttpUrl modifiedUrl = originalRequest.url().newBuilder()
                     .addQueryParameter("uid", ApiConstants.uid)
-                    .addQueryParameter("lastDoc", ",,,")
+//                    .addQueryParameter("lastDoc", ",,,")
                     .addQueryParameter("proid", "ifengnews")
                     .addQueryParameter("vt", "5")
-                    .addQueryParameter("publishid", "3329")
+//                    .addQueryParameter("publishid", "3329")
+                    .addQueryParameter("publishid", "6103")
                     .addQueryParameter("screen", "1080x1920")
                     .addQueryParameter("df", "androidphone")
-                    .addQueryParameter("os", "android_26")
+                    .addQueryParameter("os", "android_24")
                     .addQueryParameter("nw", "wifi")
-                    .addQueryParameter("gv", "5.5.0")
-                    .addQueryParameter("av", "5.5.0")
+//                    .addQueryParameter("gv", "5.5.0")
+//                    .addQueryParameter("av", "5.5.0")
                     .addQueryParameter("deviceid", ApiConstants.uid)
-                    .addQueryParameter("publishid", "3329")
                     .build();
             request = originalRequest.newBuilder().url(modifiedUrl).build();
             return chain.proceed(request);

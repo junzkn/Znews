@@ -14,7 +14,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text=""
-        android:textColor="@android:color/black" />
+        android:textColor="@color/TextColorB" />
 
 
     <LinearLayout
@@ -79,7 +79,7 @@
             android:background="@drawable/news_ad_bg"
             android:gravity="center"
             android:text="广告"
-            android:textColor="@color/themeColor"
+            android:textColor="@color/TextColorS"
             android:textSize="8sp" />
 
     </RelativeLayout>

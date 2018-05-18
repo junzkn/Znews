@@ -6,25 +6,31 @@
     <RelativeLayout
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
-        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="55dp">
         <TextView
+            android:textColor="@color/TextColorS"
             android:id="@+id/tv_setting_title"
             android:layout_centerVertical="true"
             android:text="设置"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <ImageView
-            android:background="@drawable/btn_gointo"
+        <TextView
+            android:textColor="@color/TextColorS"
+            android:id="@+id/tv_setting_content"
+            android:textSize="12sp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <View
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:background="#11646464"
+            android:id="@+id/line"
             android:layout_alignParentBottom="true"
             android:layout_height="1px"
             android:layout_width="match_parent">

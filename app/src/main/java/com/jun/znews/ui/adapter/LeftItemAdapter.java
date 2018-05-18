@@ -1,5 +1,6 @@
 package com.jun.znews.ui.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,13 @@ import com.jun.znews.utils.MenuDataUtil;
 import java.util.List;
 
 public class LeftItemAdapter extends BaseAdapter {
-    public LayoutInflater inflater ;
+    private LayoutInflater inflater ;
     private List<LeftItemMenu> itemMenuList ;
-    public LeftItemAdapter (){
+    private Context context ;
+    public LeftItemAdapter (Context context ){
         inflater = LayoutInflater.from(ThisApp.getInstance());
-        this.itemMenuList = MenuDataUtil.getLeftItemMenus() ;
+        this.context = context ;
+        this.itemMenuList = MenuDataUtil.getLeftItemMenus(this.context) ;
     }
     @Override
     public int getCount() {

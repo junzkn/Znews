@@ -20,7 +20,7 @@
         android:ellipsize="end"
         android:maxLines="3"
         android:text="TextView"
-        android:textColor="@android:color/black"
+        android:textColor="@color/TextColorB"
         app:layout_constraintBottom_toTopOf="@+id/tv_source"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/guideline"
@@ -61,6 +61,7 @@
         tools:layout_editor_absoluteX="0dp"/>
 
     <TextView
+        android:textColor="@color/TextColorS"
         android:id="@+id/tv_source"
         android:layout_width="wrap_content"
         android:layout_height="17dp"

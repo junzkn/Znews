@@ -42,6 +42,7 @@ public class AdvertActivity extends BaseActivity<ArticlePresenter>  {
 
     @Override
     public void init() {
+        setStatusBarColor(getResources().getColor(R.color.themeColor),0);
         mPbProgress = findViewById(R.id.pb_progress);
         mWebviewAdvert = findViewById(R.id.webview_advert);
         back = findViewById(R.id.iv_back);
@@ -55,7 +56,6 @@ public class AdvertActivity extends BaseActivity<ArticlePresenter>  {
                 AdvertActivity.this.finish();
             }
         });
-
         getSetting(mWebviewAdvert);
         mWebviewAdvert.setWebViewClient(new WebViewClient() {
             @Override
@@ -111,7 +111,7 @@ public class AdvertActivity extends BaseActivity<ArticlePresenter>  {
         webview.getSettings().setAllowFileAccessFromFileURLs(true);
         webview.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         webview.getSettings().setDomStorageEnabled(true);
-
+        webview.setBackgroundColor(getResources().getColor(R.color.windowBackground));
     }
 
 

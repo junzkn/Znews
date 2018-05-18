@@ -3,9 +3,12 @@ package com.jun.znews;
 
 import android.support.v7.app.AppCompatDelegate;
 
+import com.jun.znews.common.SharedPreferencesConstance;
+import com.jun.znews.utils.SharedPreferencesUtil;
+
 import org.litepal.LitePalApplication;
 
-import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
+import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
 
 public class ThisApp extends LitePalApplication {
     private static ThisApp instance = null ;
@@ -13,10 +16,10 @@ public class ThisApp extends LitePalApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        BGASwipeBackManager.getInstance().init(this) ;
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES );
+        BGASwipeBackHelper.init(this,null);
+        setNightMode();
 
-        instance = this ;
+        ThisApp.instance = this ;
     }
 
     public static ThisApp getInstance (){
@@ -26,7 +29,9 @@ public class ThisApp extends LitePalApplication {
 
 
     private void setNightMode() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES );
+        SharedPreferencesUtil sp = SharedPreferencesUtil.getInstance(this);
+        AppCompatDelegate.setDefaultNightMode(sp.getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)?
+        AppCompatDelegate.MODE_NIGHT_YES :AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 

@@ -58,6 +58,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
 
     @Override
     public void init() {
+        //setStatusBarColor(getResources().getColor(R.color.themeColor),0);
         rl = findViewById(R.id.rl_video);
         videoPlayer = findViewById(R.id.video);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -151,7 +152,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
 
     @Override
     public boolean isSupportSwipeBack() {
-        return false;
+        return true;
     }
 
 

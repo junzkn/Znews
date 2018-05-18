@@ -29,7 +29,7 @@
             layout="@layout/top_bar_common_layout" />
         <!--中间内容后面放入Fragment-->
         <FrameLayout
-            android:background="@android:color/white"
+            android:background="@color/windowBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >

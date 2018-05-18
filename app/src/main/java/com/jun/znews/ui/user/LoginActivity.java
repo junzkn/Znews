@@ -38,6 +38,8 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void init() {
+        setStatusBarColor(getResources().getColor(R.color.themeColor),0);
+
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         rl = findViewById(R.id.rl);
         img_back = findViewById(R.id.ar_back);
@@ -143,5 +145,8 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-
+    @Override
+    public boolean isSupportSwipeBack() {
+        return true;
+    }
 }

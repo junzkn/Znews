@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:background="@color/windowBackground"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -11,7 +12,7 @@
         android:layout_marginBottom="15dp"
         android:gravity="center"
         android:layout_width="300dp"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/TextColorB"
         android:layout_height="wrap_content"
         android:text="选择原因，精准屏蔽"
         android:textSize="16sp" />
@@ -27,13 +28,13 @@
     </GridView>
 
     <TextView
-        android:background="@drawable/del_commit_bg"
+        android:background="@drawable/delpop_commit_bg"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:layout_width="250dp"
         android:id="@+id/btn_commit"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/TextColorB"
         android:text="提交"
         android:padding="5dp"
         android:textSize="16sp" />

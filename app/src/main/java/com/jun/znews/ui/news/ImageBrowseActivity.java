@@ -92,7 +92,6 @@ public class ImageBrowseActivity extends BaseActivity<ArticlePresenter> implemen
     @SuppressLint("ResourceAsColor")
     @Override
     public void init() {
-        //getWindow().setStatusBarColor(android.R.color.black);
         img_back = findViewById(R.id.btn_titlebar_left);
         mTvTitlebarName = findViewById(R.id.tv_titlebar_name);
         mRlTop = findViewById(R.id.rl_top);

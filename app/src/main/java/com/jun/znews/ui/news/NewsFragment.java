@@ -13,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -292,7 +291,7 @@ public class NewsFragment extends BaseFragment<NewsPresenter> implements INewsCo
             select.add(false) ;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        View view = View.inflate(getContext(),R.layout.delitem, null);
+        View view = View.inflate(getContext(),R.layout.delpop, null);
         GridView gl = view.findViewById(R.id.gl);
         TextView btn_commit = view.findViewById(R.id.btn_commit);
         DeleteGridViewAdapter adapter = new DeleteGridViewAdapter(backreason,getContext()) ;

@@ -8,7 +8,7 @@
         android:id="@+id/ar_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@android:color/white">
+        android:background="@color/background">
 
         <ImageView
             android:id="@+id/ar_back"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="2px"
             android:layout_alignParentBottom="true"
-            android:background="#e6e6e6" />
+            android:background="@color/background" />
 
     </RelativeLayout>
 
@@ -80,7 +80,7 @@
         android:id="@+id/ar_scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@color/background"
         android:descendantFocusability="blocksDescendants"
         android:fillViewport="true"
         android:scrollbars="vertical">
@@ -104,7 +104,7 @@
                     android:layout_marginRight="24dp"
                     android:layout_marginTop="8dp"
                     android:text="title"
-                    android:textColor="#333333"
+                    android:textColor="@color/TextColorB"
                     android:textSize="24sp" />
 
                 <RelativeLayout
@@ -130,7 +130,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@id/ar_logo"
                         android:text="name"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/TextColorB"
                         android:textStyle="bold" />
 
                     <TextView
@@ -141,7 +141,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_toRightOf="@id/ar_logo"
                         android:text="time"
-                        android:textColor="#989898"
+                        android:textColor="@color/TextColorS"
                         android:textSize="@dimen/sp_12" />
 
                     <Button
@@ -153,7 +153,7 @@
                         android:layout_marginEnd="15dp"
                         android:background="@drawable/read_bt_bg"
                         android:text="关注"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@color/colorWhite" />
                 </RelativeLayout>
 
 
@@ -166,13 +166,12 @@
                 android:layout_marginBottom="45dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:background="@android:color/white" />
+                android:background="@color/background" />
 
         </LinearLayout>
 
 
     </com.jun.znews.widget.CustomArticleScrollView>
-
 
     <ProgressBar
         android:id="@+id/img_loadingData"
@@ -188,7 +187,6 @@
         android:layout_centerInParent="true"
         android:text="加载失败\n点击重试"
         android:visibility="gone" />
-
 
 
 </RelativeLayout>

@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!--APP-->
+    <color name="colorPrimary">#A984DC</color>
+    <color name="colorPrimaryDark">#A984DC</color>
+    <color name="colorAccent">#A984DC</color>
+    <color name="navigationBarColor">#efefef</color>
+    <color name="windowBackground">#efefef</color>
 
+    <!--theme-->
     <color name="themeColor">#A984DC</color>
     <color name="themeColorDeep">#ab29ec</color>
     <color name="themeColorT">#88A984DC</color>
     <color name="themeColorS">#d1b0ff</color>
-    <color name="colorBlack">#ff000000</color>
-    <color name="colorWhite">#ffffffff</color>
+
+    <!--background-->
+    <color name="WindowBackground">#EFEFEF</color>
+    <color name="background">#FFFFFF</color>
+
+    <!--text-->
+    <color name="TextColorB">#000000</color>
+    <color name="TextColorS">#989898</color>
+
+    <!--color-->
+    <color name="colorBlack">#000000</color>
+    <color name="colorWhite">#ffffff</color>
     <color name="colorGray">#646464</color>
     <color name="colorRed">#ff0000</color>
+
 </resources>

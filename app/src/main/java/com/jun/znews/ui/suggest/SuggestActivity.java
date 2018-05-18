@@ -1,6 +1,7 @@
-package com.jun.znews.ui.suggert;
+package com.jun.znews.ui.suggest;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,7 @@ public class SuggestActivity extends BaseActivity {
 
     @Override
     public void init() {
+        setStatusBarColor(getResources().getColor(R.color.themeColor),0);
         toast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
         top_bar_linear_back= this.findViewById(R.id.ar_back);
         layout_type= this.findViewById(R.id.linear_question_classify);
@@ -136,9 +138,10 @@ public class SuggestActivity extends BaseActivity {
     }
 
 
-
-
-
+    @Override
+    public boolean isSupportSwipeBack() {
+        return true;
+    }
 
     @Override
     protected void onDestroy() {

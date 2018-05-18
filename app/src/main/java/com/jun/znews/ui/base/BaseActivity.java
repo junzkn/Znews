@@ -1,15 +1,15 @@
 package com.jun.znews.ui.base;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.IntRange;
 import android.support.annotation.Nullable;
-import android.view.View;
 
+import com.jaeger.library.StatusBarUtil;
 import com.jun.znews.R;
-import com.trello.rxlifecycle2.components.RxActivity;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper;
-import cn.bingoogolapple.swipebacklayout.BGASwipeBackManager;
 
 
 public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatActivity implements BGASwipeBackHelper.Delegate {
@@ -23,9 +23,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
         initSwipeBackFinish();
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+
         init();
         basePresenter = initPresent();
         prepare();
+
     }
 
 
@@ -74,6 +76,29 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
         mSwipeBackHelper.swipeBackward();
     }
 
+    @Override
+    public void onBackPressed() {
+        // 正在滑动返回的时候取消返回按钮事件
+        if (mSwipeBackHelper.isSliding()) {
+            return;
+        }
+        mSwipeBackHelper.backward();
+    }
+
+
+
+    /**
+     * 设置状态栏颜色
+     *
+     * @param color
+     * @param statusBarAlpha 透明度
+     */
+    public void setStatusBarColor(@ColorInt int color, @IntRange(from = 0, to = 255) int statusBarAlpha) {
+        StatusBarUtil.setColorForSwipeBack(this, color, statusBarAlpha);
+    }
+
+
+
     public abstract T initPresent();
 
     public abstract int getLayout();
@@ -81,4 +106,9 @@ public abstract class BaseActivity<T extends BasePresenter> extends RxAppCompatA
     public abstract void init();
 
     public abstract void prepare();
+
+
+
+
+
 }

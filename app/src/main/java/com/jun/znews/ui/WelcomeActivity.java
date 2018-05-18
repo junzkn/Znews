@@ -14,7 +14,6 @@ import com.jun.znews.ui.main.MainActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private Button btn_splash;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -30,19 +29,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
     public void init() {
-        btn_splash = findViewById(R.id.btn_welcome);
     }
 
     public void prepare() {
 
-
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
     private void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);

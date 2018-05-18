@@ -25,7 +25,9 @@
         </activity>
         <activity
             android:name=".ui.WelcomeActivity"
-            android:theme="@style/WelcomeTheme" />
+            android:theme="@style/WelcomeTheme" >
+
+        </activity>
         <activity
             android:name=".ui.news.ArticleActivity"
             android:theme="@style/BGA" />
@@ -34,16 +36,25 @@
             android:theme="@style/BGA" />
         <activity
             android:name=".ui.news.ImageBrowseActivity"
+            android:theme="@style/BGA_Photo" />
+        <activity
+            android:name=".ui.user.LoginActivity"
             android:theme="@style/BGA" />
-        <activity android:name=".ui.user.LoginActivity" />
-        <activity android:name=".ui.user.UserInfoActivity" />
-        <activity android:name=".ui.suggert.SuggestActivity" />
-        <activity android:name=".ui.AboutActivity" />
+        <activity
+            android:name=".ui.user.UserInfoActivity"
+            android:theme="@style/BGA" />
+        <activity
+            android:name=".ui.suggest.SuggestActivity"
+            android:theme="@style/BGA" />
+        <activity
+            android:name=".ui.AboutActivity"
+            android:theme="@style/BGA" />
         <activity
             android:name=".ui.news.VideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.setting.SettingActivity"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/BGA_video" />
+        <activity android:name=".ui.setting.SettingActivity" />
     </application>
 
 </manifest>

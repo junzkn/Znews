@@ -1,9 +1,12 @@
 package com.jun.znews.ui.news;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -20,10 +23,12 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.jun.znews.R;
 import com.jun.znews.bean.NewsArticleBean;
+import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.ui.news.Contract.IArticleContract;
 import com.jun.znews.ui.news.Presenter.ArticlePresenter;
 import com.jun.znews.utils.DateUtil;
+import com.jun.znews.utils.SharedPreferencesUtil;
 import com.jun.znews.widget.CustomArticleScrollView;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
@@ -66,6 +71,7 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
 
     @Override
     public void init() {
+        setStatusBarColor(getResources().getColor(R.color.themeColor),0);
         listimg = new ArrayList<>();
         loadingData = findViewById(R.id.img_loadingData) ;
         loadFail = findViewById(R.id.img_loadFail) ;
@@ -129,7 +135,13 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
         ar_webView.setHorizontalScrollbarOverlay(false);
         ar_webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         ar_webView.getSettings().setDomStorageEnabled(true);
-        ar_webView.loadUrl("file:///android_asset/ifeng/post_detail.html");
+        if(SharedPreferencesUtil.getInstance(this).getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)){
+            Log.e("night","yes") ;
+            ar_webView.loadUrl("file:///android_asset/ifeng/post_detail_night.html");
+        }else {
+            Log.e("night","no") ;
+            ar_webView.loadUrl("file:///android_asset/ifeng/post_detail.html");
+        }
         ar_webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -148,6 +160,7 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
         class JsObject {
             @JavascriptInterface
            public void openImage(final String src) {
+                Log.e("image","src:"+src) ;
                 //TODO
             }
             @JavascriptInterface

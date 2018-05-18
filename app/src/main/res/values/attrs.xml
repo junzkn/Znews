@@ -10,6 +10,8 @@
 
     <declare-styleable name="SettingSwipeView">
         <attr name="desTitle" format="string"/>
+        <attr name="desContent" format="string"/>
+        <attr name="line" format="boolean"/>
     </declare-styleable>
 
 

@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/windowBackground"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.setting.SettingActivity"
@@ -13,14 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:background="@android:color/white">
+        android:background="@color/background">
 
         <TextView
             android:id="@+id/login_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:text="setting"
+            android:text="设置"
             android:layout_toRightOf="@id/ar_back"
             android:textColor="@color/colorBlack"
             android:textSize="20sp" />
@@ -38,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="2px"
             android:layout_alignParentBottom="true"
-            android:background="#e6e6e6" />
+            android:background="@color/background" />
 
     </RelativeLayout>
 
@@ -53,40 +55,88 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:background="#11646464"
+                android:background="@color/background"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <TextView
-                    android:text="lilkan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+
                 <com.jun.znews.widget.SettingSwipeView
-                    app:desTitle="Wi-Fi"
+                    app:desTitle="主页无图模式"
                     android:id="@+id/siv_wutu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </com.jun.znews.widget.SettingSwipeView>
                 <com.jun.znews.widget.SettingSwipeView
-                    app:desTitle="Wi-Fi"
+                    app:desTitle="Wi-Fi下视频自动播放"
                     android:id="@+id/siv_wifibofang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </com.jun.znews.widget.SettingSwipeView>
                 <com.jun.znews.widget.SettingSwipeView
-                    app:desTitle="Wi-Fi"
-                    android:id="@+id/siv_eifilianxubofang"
+                    app:desTitle="Wi-Fi下视频连续播放"
+                    android:id="@+id/siv_wifilianxubofang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </com.jun.znews.widget.SettingSwipeView>
                 <com.jun.znews.widget.SettingSwipeView
-                    app:desTitle="Wi-Fi"
+                    app:desTitle="无广告"
                     android:id="@+id/siv_guanggao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </com.jun.znews.widget.SettingSwipeView>
+                <com.jun.znews.widget.SettingClickView
+                    app:desTitle="页面字体大小"
+                    app:desContent="大"
+                    app:line="false"
+                    android:id="@+id/scv_ziti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingClickView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="@color/background"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.jun.znews.widget.SettingClickView
+                    app:desTitle="清理缓存"
+                    app:desContent="10M"
+                    android:id="@+id/scv_huancun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingClickView>
+                <com.jun.znews.widget.SettingClickView
+                    app:desTitle="检查更新"
+                    app:desContent="v1.0"
+                    app:line="false"
+                    android:id="@+id/scv_gengxin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingClickView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:background="@color/background"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.jun.znews.widget.SettingClickView
+                    app:desTitle="关于我们"
+                    app:desContent=""
+                    app:line="false"
+                    android:id="@+id/scv_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingClickView>
             </LinearLayout>
 
 

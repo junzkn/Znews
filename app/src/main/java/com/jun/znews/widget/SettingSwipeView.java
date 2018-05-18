@@ -20,6 +20,8 @@ public class SettingSwipeView extends RelativeLayout {
     private TextView tv_setting_title;
     private SwitchCompat cb_setting_select;
     private SettingSwipeListener LLListener;
+    private boolean desLine ;
+    private View setting_line ;
 
 
     public SettingSwipeView(Context context) {
@@ -35,8 +37,11 @@ public class SettingSwipeView extends RelativeLayout {
         View.inflate(context,R.layout.setting_item,this) ;
         tv_setting_title = this.findViewById(R.id.tv_setting_title);
         cb_setting_select = this.findViewById(R.id.cb_setting_select);
+        setting_line = this.findViewById(R.id.line);
         initAttrs(attrs) ;
         tv_setting_title.setText(desTitle);
+        setting_line.setVisibility(desLine?VISIBLE:INVISIBLE);
+
     }
 
     /**
@@ -45,6 +50,7 @@ public class SettingSwipeView extends RelativeLayout {
      */
     private void initAttrs(AttributeSet attrs) {
         desTitle = attrs.getAttributeValue(SPACE,"desTitle") ;
+        desLine = attrs.getAttributeBooleanValue(SPACE, "line", true);
     }
 
     public interface SettingSwipeListener {
