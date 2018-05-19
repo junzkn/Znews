@@ -54,7 +54,7 @@ public class SettingSwipeView extends RelativeLayout {
     }
 
     public interface SettingSwipeListener {
-        void onClick(boolean status) ;
+        void onClick(boolean status,View view) ;
     }
 
 
@@ -74,7 +74,7 @@ public class SettingSwipeView extends RelativeLayout {
             public void onClick(View v) {
                 setCheck(!isCheck());
                 if(LLListener!=null){
-                    LLListener.onClick(isCheck());
+                    LLListener.onClick(isCheck(),SettingSwipeView.this);
                 }
             }
         });

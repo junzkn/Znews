@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
+import com.jun.znews.ThisApp;
 import com.jun.znews.bean.Weather;
 import com.jun.znews.net.ApiConstants;
 import com.jun.znews.net.WeatherApi;
@@ -34,9 +35,9 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView, IMainC
     Retrofit retrofit;
 
 
-    public MainPresenter(IMainContract.IMainView mView, Context context) {
+    public MainPresenter(IMainContract.IMainView mView) {
         super(mView);
-        this.context = context;
+        this.context = ThisApp.getContext();
     }
 
     @Override

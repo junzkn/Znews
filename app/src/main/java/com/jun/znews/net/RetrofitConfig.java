@@ -5,7 +5,9 @@ import android.util.Log;
 
 
 import com.jun.znews.ThisApp;
+import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.utils.NetUtil;
+import com.jun.znews.utils.SharedPreferencesUtil;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -72,21 +74,41 @@ public class RetrofitConfig {
         public Response intercept(Chain chain) throws IOException {
             Request originalRequest = chain.request();
             Request request;
-            HttpUrl modifiedUrl = originalRequest.url().newBuilder()
-                    .addQueryParameter("uid", ApiConstants.uid)
+            HttpUrl modifiedUrl;
+            if (SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.SETTING_GUANGGAO)) {
+                modifiedUrl = originalRequest.url().newBuilder()
+                        .addQueryParameter("uid", ApiConstants.uid)
+                        .addQueryParameter("lastDoc", ",,,")
+                        .addQueryParameter("proid", "ifengnews")
+                        .addQueryParameter("vt", "5")
+                        .addQueryParameter("publishid", "3329")
+                        .addQueryParameter("screen", "1080x1920")
+                        .addQueryParameter("df", "androidphone")
+                        .addQueryParameter("os", "android_24")
+                        .addQueryParameter("nw", "wifi")
+                        .addQueryParameter("gv", "5.5.0")
+                        .addQueryParameter("av", "5.5.0")
+                        .addQueryParameter("deviceid", ApiConstants.uid)
+                        .build();
+            } else {
+                modifiedUrl = originalRequest.url().newBuilder()
+                        .addQueryParameter("uid", ApiConstants.uid)
 //                    .addQueryParameter("lastDoc", ",,,")
-                    .addQueryParameter("proid", "ifengnews")
-                    .addQueryParameter("vt", "5")
+                        .addQueryParameter("proid", "ifengnews")
+                        .addQueryParameter("vt", "5")
 //                    .addQueryParameter("publishid", "3329")
-                    .addQueryParameter("publishid", "6103")
-                    .addQueryParameter("screen", "1080x1920")
-                    .addQueryParameter("df", "androidphone")
-                    .addQueryParameter("os", "android_24")
-                    .addQueryParameter("nw", "wifi")
+                        .addQueryParameter("publishid", "6103")
+                        .addQueryParameter("screen", "1080x1920")
+                        .addQueryParameter("df", "androidphone")
+                        .addQueryParameter("os", "android_24")
+                        .addQueryParameter("nw", "wifi")
 //                    .addQueryParameter("gv", "5.5.0")
 //                    .addQueryParameter("av", "5.5.0")
-                    .addQueryParameter("deviceid", ApiConstants.uid)
-                    .build();
+                        .addQueryParameter("deviceid", ApiConstants.uid)
+                        .build();
+            }
+
+
             request = originalRequest.newBuilder().url(modifiedUrl).build();
             return chain.proceed(request);
         }

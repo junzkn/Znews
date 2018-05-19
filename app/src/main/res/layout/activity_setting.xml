@@ -63,8 +63,14 @@
                 android:orientation="vertical">
 
                 <com.jun.znews.widget.SettingSwipeView
-                    app:desTitle="主页无图模式"
+                    app:desTitle="无图模式"
                     android:id="@+id/siv_wutu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.jun.znews.widget.SettingSwipeView>
+                <com.jun.znews.widget.SettingSwipeView
+                    app:desTitle="屏蔽广告"
+                    android:id="@+id/siv_guanggao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </com.jun.znews.widget.SettingSwipeView>
@@ -80,15 +86,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </com.jun.znews.widget.SettingSwipeView>
-                <com.jun.znews.widget.SettingSwipeView
-                    app:desTitle="无广告"
-                    android:id="@+id/siv_guanggao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </com.jun.znews.widget.SettingSwipeView>
+
                 <com.jun.znews.widget.SettingClickView
                     app:desTitle="页面字体大小"
-                    app:desContent="大"
+                    app:desContent="10M"
                     app:line="false"
                     android:id="@+id/scv_ziti"
                     android:layout_width="match_parent"
@@ -113,7 +114,7 @@
                 </com.jun.znews.widget.SettingClickView>
                 <com.jun.znews.widget.SettingClickView
                     app:desTitle="检查更新"
-                    app:desContent="v1.0"
+                    app:desContent="10M"
                     app:line="false"
                     android:id="@+id/scv_gengxin"
                     android:layout_width="match_parent"

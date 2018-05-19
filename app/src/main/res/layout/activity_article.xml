@@ -31,7 +31,7 @@
                 android:id="@+id/ar_topLogo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@mipmap/ic_launcher" />
+                android:background="@mipmap/ic_launcher" />
 
             <TextView
                 android:id="@+id/ar_topName"
@@ -119,7 +119,7 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="8dp"
-                        android:src="@mipmap/ic_launcher" />
+                        android:background="@mipmap/ic_launcher" />
 
                     <TextView
                         android:id="@+id/ar_name"

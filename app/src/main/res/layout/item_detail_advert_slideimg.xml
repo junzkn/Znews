@@ -29,7 +29,7 @@
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="#E8E8E8"
+            android:background="@color/imageColor"
             android:scaleType="centerCrop" />
 
         <ImageView
@@ -39,7 +39,7 @@
             android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="#E8E8E8"
+            android:background="@color/imageColor"
             android:scaleType="centerCrop" />
 
         <ImageView
@@ -49,7 +49,7 @@
             android:layout_margin="4dp"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="#E8E8E8"
+            android:background="@color/imageColor"
             android:scaleType="fitXY" />
 
     </LinearLayout>

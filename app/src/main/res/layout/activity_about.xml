@@ -4,26 +4,6 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:id="@+id/ar_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_read_back" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/bottom"/>
-
-    <RelativeLayout
-        android:id="@+id/bottom"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_alignParentBottom="true">
-
-    </RelativeLayout>
-
 
 
 </RelativeLayout>

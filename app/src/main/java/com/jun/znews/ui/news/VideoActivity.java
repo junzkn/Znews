@@ -14,11 +14,14 @@ import com.jun.video.JZVideoPlayerStandard;
 import com.jun.znews.R;
 import com.jun.znews.bean.NewsOtherVideo;
 import com.jun.znews.bean.NewsVideo;
+import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.ui.adapter.OtherVideoAdapter;
 import com.jun.znews.ui.base.BaseActivity;
 import com.jun.znews.ui.news.Contract.IVideoContract;
 import com.jun.znews.ui.news.Presenter.VideoPresenter;
 import com.jun.znews.utils.ImageLoaderUtil;
+import com.jun.znews.utils.NetUtil;
+import com.jun.znews.utils.SharedPreferencesUtil;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import java.util.ArrayList;
@@ -35,7 +38,8 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
     private LinearLayoutManager linearLayoutManager;
     List<NewsOtherVideo.GuidRelativeVideoInfoBean> beanList;
     private int lastPosition = 0;
-    private String tag = "";
+    private boolean isPlayNow;
+
     View lastView;
 
 
@@ -58,12 +62,15 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
 
     @Override
     public void init() {
-        //setStatusBarColor(getResources().getColor(R.color.themeColor),0);
         rl = findViewById(R.id.rl_video);
         videoPlayer = findViewById(R.id.video);
         linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         beanList = new ArrayList<>();
-        otherVideoAdapter = new OtherVideoAdapter(getApplicationContext(), R.layout.item_other_video, beanList);
+        otherVideoAdapter = new OtherVideoAdapter(getApplicationContext(),
+                R.layout.item_other_video, beanList);
+        isPlayNow = SharedPreferencesUtil.getInstance(this)
+                .getBooleanValue(SharedPreferencesConstance.SETTING_WIFIBOFANG)
+                && NetUtil.isWifiConnected(this);
     }
 
     @Override
@@ -76,18 +83,18 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
         otherVideoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                isPlayNow = true ;
                 if (lastPosition == position) return;
                 if (lastView != null) {
                     lastView.findViewById(R.id.iv_isPlay).setVisibility(View.VISIBLE);
                     lastView.findViewById(R.id.tv_show).setVisibility(View.GONE);
                 }
+                JZVideoPlayer.releaseAllVideos();
                 NewsOtherVideo.GuidRelativeVideoInfoBean item = otherVideoAdapter.getItem(position);
                 view.findViewById(R.id.iv_isPlay).setVisibility(View.GONE);
                 view.findViewById(R.id.tv_show).setVisibility(View.VISIBLE);
                 lastView = view;
                 lastPosition = position;
-
-
                 playGuid(item.getGuid());
             }
         });
@@ -102,7 +109,7 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
 
     @Override
     public void setData(NewsVideo.VideoBean videoBean) {
-        if(videoBean!=null){
+        if (videoBean != null) {
             String urlH = videoBean.getVideoURLHigh();
             String urlM = videoBean.getVideoURLMid();
             String urlL = videoBean.getVideoURLLow();
@@ -114,17 +121,17 @@ public class VideoActivity extends BaseActivity<VideoPresenter> implements IVide
             dataSourceObjects[0] = map;
             videoPlayer.setUp(dataSourceObjects, 0, JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, videoBean.getTitle());
             ImageLoaderUtil.LoadImage(getApplicationContext(), videoBean.getThumbnailVertical(), (ImageView) videoPlayer.thumbImageView);
-            videoPlayer.startVideo();
+            if(isPlayNow)videoPlayer.startVideo();
         }
 
     }
 
     @Override
     public void setOtherData(List<NewsOtherVideo.GuidRelativeVideoInfoBean> data) {
-        if(data!=null){
-            List<NewsOtherVideo.GuidRelativeVideoInfoBean> n = new ArrayList<>() ;
-            for(int i=0 ; i<8 && i<data.size() ; i++){
-                n.add(data.get(i)) ;
+        if (data != null) {
+            List<NewsOtherVideo.GuidRelativeVideoInfoBean> n = new ArrayList<>();
+            for (int i = 0; i < 8 && i < data.size(); i++) {
+                n.add(data.get(i));
             }
             otherVideoAdapter.setNewData(n);
         }

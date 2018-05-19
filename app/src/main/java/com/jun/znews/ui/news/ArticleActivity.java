@@ -1,8 +1,6 @@
 package com.jun.znews.ui.news;
 
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -22,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.jun.znews.R;
+import com.jun.znews.ThisApp;
 import com.jun.znews.bean.NewsArticleBean;
 import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.ui.base.BaseActivity;
@@ -32,18 +31,25 @@ import com.jun.znews.utils.SharedPreferencesUtil;
 import com.jun.znews.widget.CustomArticleScrollView;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ArticleActivity extends BaseActivity<ArticlePresenter> implements IArticleContract.IArticleView {
 
-    private ImageView ar_back , ar_topLogo , ar_logo ;
-    private Button ar_topLike , ar_like ;
-    private RelativeLayout ar_topBar , ar_bar ;
-    private CustomArticleScrollView ar_scrollView ;
-    private TextView ar_title ,ar_name , ar_topName , ar_updateTime , ar_topUpdateTime ;
-    private WebView ar_webView ;
-    protected View loadFail ;
-    protected View  loadingData ;
+    private ImageView ar_back, ar_topLogo, ar_logo;
+    private Button ar_topLike, ar_like;
+    private RelativeLayout ar_topBar, ar_bar;
+    private CustomArticleScrollView ar_scrollView;
+    private TextView ar_title, ar_name, ar_topName, ar_updateTime, ar_topUpdateTime;
+    private WebView ar_webView;
+    protected View loadFail;
+    protected View loadingData;
     private String aid;
     private ArrayList<String> listimg;
 
@@ -71,10 +77,10 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
 
     @Override
     public void init() {
-        setStatusBarColor(getResources().getColor(R.color.themeColor),0);
+        setStatusBarColor(getResources().getColor(R.color.themeColor), 0);
         listimg = new ArrayList<>();
-        loadingData = findViewById(R.id.img_loadingData) ;
-        loadFail = findViewById(R.id.img_loadFail) ;
+        loadingData = findViewById(R.id.img_loadingData);
+        loadFail = findViewById(R.id.img_loadFail);
         ar_back = findViewById(R.id.ar_back);
         ar_topLogo = findViewById(R.id.ar_topLogo);
         ar_logo = findViewById(R.id.ar_logo);
@@ -118,10 +124,11 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
                 basePresenter.loadData(aid);
             }
         });
-        setWebViewSetting() ;
+        setWebViewSetting();
 
 
     }
+
     private void setWebViewSetting() {
         addjs(ar_webView);
         ar_webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
@@ -135,11 +142,12 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
         ar_webView.setHorizontalScrollbarOverlay(false);
         ar_webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         ar_webView.getSettings().setDomStorageEnabled(true);
-        if(SharedPreferencesUtil.getInstance(this).getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)){
-            Log.e("night","yes") ;
+        ar_webView.setBackgroundColor(getResources().getColor(R.color.background));
+        if (SharedPreferencesUtil.getInstance(this).getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)) {
+            Log.e("night", "yes");
             ar_webView.loadUrl("file:///android_asset/ifeng/post_detail_night.html");
-        }else {
-            Log.e("night","no") ;
+        } else {
+            Log.e("night", "no");
             ar_webView.loadUrl("file:///android_asset/ifeng/post_detail.html");
         }
         ar_webView.setWebViewClient(new WebViewClient() {
@@ -159,24 +167,19 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
     private void addjs(WebView ar_webView) {
         class JsObject {
             @JavascriptInterface
-           public void openImage(final String src) {
-                Log.e("image","src:"+src) ;
+            public void openImage(final String index) {
+                Log.e("image", "src:" + index);
                 //TODO
             }
-            @JavascriptInterface
-            public void readImageUrl(String src) {
-                listimg.add(src);
-            }
-
         }
         ar_webView.addJavascriptInterface(new JsObject(), "imagelistner");
     }
 
     @Override
     public void setData(final NewsArticleBean articleBean) {
-        if(articleBean==null) {
+        if (articleBean == null) {
             loadFail();
-            return ;
+            return;
         }
         loadSucceed();
         ar_bar.setVisibility(View.VISIBLE);
@@ -198,37 +201,40 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
             ar_name.setText(articleBean.getBody().getSubscribe().getCateSource());
             ar_topName.setText(articleBean.getBody().getSubscribe().getCateSource());
             ar_topUpdateTime.setText(articleBean.getBody().getSubscribe().getCatename());
-        }else {
+        } else {
             ar_topName.setText(articleBean.getBody().getSource());
             ar_name.setText(articleBean.getBody().getSource());
             ar_topUpdateTime.setText(!TextUtils.isEmpty(articleBean.getBody().getAuthor()) ? articleBean.getBody().getAuthor() : articleBean.getBody().getEditorcode());
         }
 
+
         ar_webView.post(new Runnable() {
             @Override
             public void run() {
                 final String content = articleBean.getBody().getText();
-                String url = "javascript:show_content(\'" + content + "\')";
-                ar_webView.loadUrl(url);
-                addImageClickListener();
+                Document document = Jsoup.parse(content);
+                Elements pngs = document.select("img[src]");
+                for (Element element : pngs) {
+                    listimg.add(element.attr("src"));
+                    if(SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)){
+                        element.attr("src", "file:///android_asset/pic/wutumoshi_night.png");
+                    }else {
+                        element.attr("src", "file:///android_asset/pic/wutumoshi.png");
+                    }
+                }
+                String newContent = document.toString();
+                if(SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.SETTING_WUTU)){
+                    ar_webView.loadUrl("javascript:show_content(\'" + newContent + "\')");
+                }else {
+                    ar_webView.loadUrl("javascript:show_content(\'" + content + "\')");
+                }
+                ar_webView.loadUrl("javascript:addImageListener()");
             }
         });
+
+
     }
 
-    private void addImageClickListener() {
-        // 这段js函数的功能就是，遍历所有的img节点，并添加onclick函数，函数的功能是在图片点击的时候调用本地java接口并传递url过去
-        ar_webView.loadUrl("javascript:(function(){" +
-                "var objs = document.getElementsByTagName(\"img\"); " +
-                "for(var i=0;i<objs.length;i++)  " +
-                "{" +
-                "window.imagelistner.readImageUrl(objs[i].src); "+
-                " objs[i].onclick=function()  " +
-                " {  "+
-                " window.imagelistner.openImage(this.src);  " +
-                "  }  " +
-                "}" +
-                "})()");
-    }
 
     @Override
     public LifecycleTransformer bindToLife() {
@@ -236,16 +242,17 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
     }
 
 
-
-    public void loading(){
+    public void loading() {
         loadingData.setVisibility(View.VISIBLE);
         loadFail.setVisibility(View.GONE);
     }
-    public void loadSucceed(){
+
+    public void loadSucceed() {
         loadingData.setVisibility(View.GONE);
         loadFail.setVisibility(View.GONE);
     }
-    public void loadFail(){
+
+    public void loadFail() {
         loadFail.setVisibility(View.VISIBLE);
         loadingData.setVisibility(View.GONE);
     }

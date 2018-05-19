@@ -12,7 +12,7 @@
         <!--colorAccent 对应EditText编辑时、RadioButton选中、CheckBox等选中时的颜色-->
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/navigationBarColor</item>
-        <item name="android:windowBackground">@color/themeColor</item>
+        <item name="android:windowBackground">@drawable/bj</item>
     </style>
 
 

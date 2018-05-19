@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements IMainCo
 
     @Override
     public MainPresenter initPresent() {
-        return new MainPresenter(this, this);
+        return new MainPresenter(this);
     }
 
     @Override

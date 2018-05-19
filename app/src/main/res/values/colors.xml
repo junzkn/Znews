@@ -21,6 +21,9 @@
     <color name="TextColorB">#000000</color>
     <color name="TextColorS">#989898</color>
 
+    <!--pic-->
+    <color name="imageColor">#e8e8e8</color>
+
     <!--color-->
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>

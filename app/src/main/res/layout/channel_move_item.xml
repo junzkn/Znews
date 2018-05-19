@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_margin="8dp"
-        android:background="#F3F5F4"
+        android:background="@color/imageColor"
         android:text="频道"
         android:textColor="@color/TextColorB"
         android:layout_centerInParent="true"

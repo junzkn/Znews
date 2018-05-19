@@ -1,13 +1,16 @@
 package com.jun.znews.ui.news.Presenter;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.jun.znews.bean.NewsDetail;
+import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.net.BaseObserver;
 import com.jun.znews.ui.base.BasePresenter;
 import com.jun.znews.ui.news.Contract.INewsContract;
 import com.jun.znews.ui.news.model.NewsModel;
 import com.jun.znews.utils.NewsUtil;
+import com.jun.znews.utils.SharedPreferencesUtil;
 
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +20,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 
 public class NewsPresenter extends BasePresenter<INewsContract.INewsView,INewsContract.INewsModel> implements INewsContract.INewsPresenter {
+
 
     public NewsPresenter(INewsContract.INewsView mView) {
         super(mView);
@@ -70,7 +74,7 @@ public class NewsPresenter extends BasePresenter<INewsContract.INewsView,INewsCo
                     public NewsDetail apply(List<NewsDetail> newsDetails) throws Exception {
                         for(int y=0 ; y<newsDetails.size();y++){
                             for(int i=0 ; i<newsDetails.get(0).getItem().size();i++){
-                                Log.d("net",newsDetails.get(0).getItem().get(i).getType());
+                                //Log.e("net",newsDetails.get(0).getItem().get(i).getType());
                             }
                         }
                         return newsDetails.get(0);

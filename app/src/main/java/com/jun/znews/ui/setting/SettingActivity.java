@@ -1,28 +1,37 @@
 package com.jun.znews.ui.setting;
 
 
+import android.content.Intent;
 import android.view.View;
-
+import android.widget.Toast;
 import com.jun.znews.R;
+import com.jun.znews.ui.AboutActivity;
 import com.jun.znews.ui.base.BaseActivity;
-import com.jun.znews.ui.base.BasePresenter;
 import com.jun.znews.utils.SharedPreferencesUtil;
+import com.jun.znews.utils.VersionUtil;
 import com.jun.znews.widget.SettingClickView;
 import com.jun.znews.widget.SettingSwipeView;
+
 import static com.jun.znews.common.SharedPreferencesConstance.*;
 
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseActivity<SettingPresenter> implements ISettingContract.ISettingView {
 
-    SettingSwipeView siv_wutu , siv_wifibofang , siv_wifilianxubofang ,siv_guanggao;
-    SettingClickView scv_ziti , scv_huancun , scv_gengxin , scv_about;
-    SharedPreferencesUtil spUtil ;
-
+    SettingSwipeView siv_wutu, siv_wifibofang, siv_wifilianxubofang, siv_guanggao;
+    SettingClickView scv_ziti, scv_huancun, scv_gengxin, scv_about;
+    SharedPreferencesUtil spUtil;
+    Toast toast;
 
 
     @Override
-    public BasePresenter initPresent() {
-        return null;
+    public boolean isSupportSwipeBack() {
+        return true;
     }
+
+    @Override
+    public SettingPresenter initPresent() {
+        return new SettingPresenter(this);
+    }
+
 
     @Override
     public int getLayout() {
@@ -31,18 +40,17 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void init() {
-        setStatusBarColor(getResources().getColor(R.color.themeColor),0);
-
-        siv_wutu = findViewById(R.id.siv_wutu) ;
-        siv_wifibofang = findViewById(R.id.siv_wifibofang) ;
-        siv_wifilianxubofang = findViewById(R.id.siv_wifilianxubofang) ;
-        siv_guanggao = findViewById(R.id.siv_guanggao) ;
-        scv_ziti = findViewById(R.id.scv_ziti) ;
-        scv_huancun = findViewById(R.id.scv_huancun) ;
-        scv_gengxin = findViewById(R.id.scv_gengxin) ;
-        scv_about = findViewById(R.id.scv_about) ;
+        setStatusBarColor(getResources().getColor(R.color.themeColor), 0);
+        siv_wutu = findViewById(R.id.siv_wutu);
+        siv_wifibofang = findViewById(R.id.siv_wifibofang);
+        siv_wifilianxubofang = findViewById(R.id.siv_wifilianxubofang);
+        siv_guanggao = findViewById(R.id.siv_guanggao);
+        scv_ziti = findViewById(R.id.scv_ziti);
+        scv_huancun = findViewById(R.id.scv_huancun);
+        scv_gengxin = findViewById(R.id.scv_gengxin);
+        scv_about = findViewById(R.id.scv_about);
         spUtil = SharedPreferencesUtil.getInstance(this);
-
+        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
     }
 
     @Override
@@ -52,11 +60,11 @@ public class SettingActivity extends BaseActivity {
         siv_wifilianxubofang.setCheck(spUtil.getBooleanValue(SETTING_WIFILIANXUbOFANG));
         siv_guanggao.setCheck(spUtil.getBooleanValue(SETTING_GUANGGAO));
         scv_ziti.setContextText(spUtil.getStringValue(SETTING_ZITI));
-        scv_gengxin.setContextText(spUtil.getStringValue(SETTING_GENGXIN));
-
+        scv_gengxin.setContextText("Ver." + VersionUtil.getLocalVersion(this));
+        scv_huancun.setContextText(spUtil.getStringValue(SETTING_HUANCUN));
 
         MyListener listener = new MyListener();
-        MyClickListener listener1 = new MyClickListener() ;
+        MyClickListener listener1 = new MyClickListener();
         siv_wutu.setOnSettingSwipeListener(listener);
         siv_wifibofang.setOnSettingSwipeListener(listener);
         siv_wifilianxubofang.setOnSettingSwipeListener(listener);
@@ -66,27 +74,70 @@ public class SettingActivity extends BaseActivity {
         scv_gengxin.setOnClickListener(listener1);
         scv_about.setOnClickListener(listener1);
 
+        basePresenter.getCache();
     }
 
 
+    @Override
+    public void setCache(String s) {
+        scv_huancun.setContextText(s);
+        spUtil.putStringValue(SETTING_HUANCUN, s);
+    }
 
     @Override
-    public boolean isSupportSwipeBack() {
-        return true;
+    public void setCacheClear() {
+        toast.setText("缓存已清理");
+        toast.show();
+    }
+
+    @Override
+    public void setUpdate(Boolean b) {
+        if (b) {
+
+        } else {
+            toast.setText("已是最新版本");
+            toast.show();
+        }
     }
 
 
     private class MyListener implements SettingSwipeView.SettingSwipeListener {
         @Override
-        public void onClick(boolean status) {
-
+        public void onClick(boolean status, View view) {
+            switch (view.getId()) {
+                case R.id.siv_wutu:
+                    spUtil.putBooleanValue(SETTING_WUTU,status);
+                    break;
+                case R.id.siv_wifibofang:
+                    spUtil.putBooleanValue(SETTING_WIFIBOFANG,status);
+                    break;
+                case R.id.siv_wifilianxubofang:
+                    spUtil.putBooleanValue(SETTING_WIFILIANXUbOFANG,status);
+                    break;
+                case R.id.siv_guanggao:
+                    spUtil.putBooleanValue(SETTING_GUANGGAO,status);
+                    break;
+            }
         }
     }
 
-    private class MyClickListener implements View.OnClickListener{
+    private class MyClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.scv_ziti:
+                    break;
+                case R.id.scv_huancun:
+                    basePresenter.clearCache();
+                    break;
+                case R.id.scv_gengxin:
+                    basePresenter.checkUpdate();
+                    break;
+                case R.id.scv_about:
+                    startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+                    break;
 
+            }
         }
     }
 

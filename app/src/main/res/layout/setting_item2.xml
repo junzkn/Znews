@@ -20,6 +20,7 @@
         <TextView
             android:textColor="@color/TextColorS"
             android:id="@+id/tv_setting_content"
+            android:text="sehzhi"
             android:textSize="12sp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"

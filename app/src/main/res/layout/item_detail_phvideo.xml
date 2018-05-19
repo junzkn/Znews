@@ -27,7 +27,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="#E8E8E8"
+        android:background="@color/imageColor"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/tv_commnetsize"
         app:layout_constraintHorizontal_bias="0.0"

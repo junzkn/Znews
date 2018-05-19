@@ -16,4 +16,5 @@ public class SharedPreferencesConstance {
     public static final String SETTING_GUANGGAO = "SETTING_GUANGGAO";
     public static final String SETTING_ZITI = "SETTING_ZITI";
     public static final String SETTING_GENGXIN = "SETTING_GENGXIN";
+    public static final String SETTING_HUANCUN = "SETTING_HUANCUN";
 }
