@@ -13,4 +13,13 @@
         }
     }
 
+    function fontSize(size){
+        //$("*").css("font-size",size+"px");
+        var pp =document.getElementsByTagName("p");
+        for(var i=0 ; i<pp.length ; i++){
+            pp[i].style.fontSize = size+"px" ;
+        }
+    }
+
+
 

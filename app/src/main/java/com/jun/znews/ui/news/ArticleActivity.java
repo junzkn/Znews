@@ -216,23 +216,39 @@ public class ArticleActivity extends BaseActivity<ArticlePresenter> implements I
                 Elements pngs = document.select("img[src]");
                 for (Element element : pngs) {
                     listimg.add(element.attr("src"));
-                    if(SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)){
+                    if (SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.NIGHT_MODE)) {
                         element.attr("src", "file:///android_asset/pic/wutumoshi_night.png");
-                    }else {
+                    } else {
                         element.attr("src", "file:///android_asset/pic/wutumoshi.png");
                     }
                 }
                 String newContent = document.toString();
-                if(SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.SETTING_WUTU)){
+                if (SharedPreferencesUtil.getInstance(ThisApp.getContext()).getBooleanValue(SharedPreferencesConstance.SETTING_WUTU)) {
                     ar_webView.loadUrl("javascript:show_content(\'" + newContent + "\')");
-                }else {
+                } else {
                     ar_webView.loadUrl("javascript:show_content(\'" + content + "\')");
                 }
                 ar_webView.loadUrl("javascript:addImageListener()");
+                setFontSize();
             }
         });
 
 
+    }
+
+    private void setFontSize() {
+        final String size = SharedPreferencesUtil.getInstance(ThisApp.getContext()).getStringValue(SharedPreferencesConstance.SETTING_ZITI);
+        switch (size) {
+            case "大":
+                ar_webView.loadUrl("javascript:fontSize(\'"+22+"\')");
+                break;
+            case "中":
+                ar_webView.loadUrl("javascript:fontSize(\'"+17+"\')");
+                break;
+            case "小":
+                ar_webView.loadUrl("javascript:fontSize(\'"+12+"\')");
+                break;
+        }
     }
 
 

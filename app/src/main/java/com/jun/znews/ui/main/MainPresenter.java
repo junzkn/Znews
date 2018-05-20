@@ -13,17 +13,29 @@ import android.util.Log;
 
 import com.jun.znews.ThisApp;
 import com.jun.znews.bean.Weather;
+import com.jun.znews.common.SharedPreferencesConstance;
 import com.jun.znews.net.ApiConstants;
+import com.jun.znews.net.RetrofitConfig;
 import com.jun.znews.net.WeatherApi;
 import com.jun.znews.ui.base.BasePresenter;
+import com.jun.znews.utils.SharedPreferencesUtil;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static android.content.Context.LOCATION_SERVICE;
 import static com.jun.znews.net.ApiConstants.Weather_Key;
@@ -120,6 +132,11 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView, IMainC
                     }
                 });
     }
+
+
+
+
+
 
 
 }
